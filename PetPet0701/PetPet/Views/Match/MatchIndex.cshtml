@@ -1,0 +1,62 @@
+﻿@model IEnumerable<PetPet.Models.Member>
+@{
+    ViewBag.Title = "配對";
+    var semail = "";
+
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Singin/LoidnIndex");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+    }
+}
+
+<form method="post" action="@Url.Action("Match", new { @semail = semail })">
+    <div class="row pt-5">
+            <br />
+            <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                <div class="cardl  mb-4 border-light" style="background-color:white  ">
+                    <img src="~/images/match.jpg" class="card-img " alt="Card image cap">
+                    <div class="card-body">
+
+
+                        <div class="form-group d-flex  justify-content-center " >
+                            <span class="Myfont1 d-flex    mb-4 " style="">您想遇見的對象是甚麼性別呢?</span>
+                            <select id="Gender" name="Gender" class=" form-control       ">
+                                <option class="Myfont">小王子</option>
+                                <option class="Myfont">小公主</option>
+                            </select>
+                        </div>
+                        <div class="form-group d-flex justify-content-center " >
+                            <span class="Myfont1 mb-4">您想遇見的對象居住何處呢?</span>
+                            <select id="City_no" name="City_no" class="form-control mt-3 ">
+                                @{
+                                    foreach (var cityitem in ViewBag.City)
+                                    {
+                                        <option class="Myfont1" value="@cityitem.City_no">@cityitem.City_name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" d-flex justify-content-center">
+                        <input id="Submit1" type="submit" value="抽卡" class="btn btn-o mb-3" />
+                    </div>
+
+                    <div class="text-center">
+                        <p>@Html.ActionLink("取消配對", "PostIndex", "Post", new { area = "" }, new { @class = "" })</p>
+                    </div>
+
+                </div>
+                </div>
+               
+        </div>
+   
+        
+        
+        
+
+
+</form>

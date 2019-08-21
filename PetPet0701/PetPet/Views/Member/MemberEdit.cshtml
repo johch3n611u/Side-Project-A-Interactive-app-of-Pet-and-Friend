@@ -1,0 +1,88 @@
+﻿@model PetPet.Models.Member
+
+@{
+    ViewBag.Title = "會員資料編輯";
+    var semail = "";
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Singin/LoidnIndex");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+    }
+    string gendersel = ViewBag.memgender;
+}
+
+<link href="~/Content/font.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="container">
+        <br />
+        <form method="post" action="@Url.Action("MemberEdit")" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div class="card bg-light NEWrounded-all">
+                <div class="card-header">
+                    <h4 class="Myfont">@semail 會員資料修改</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Email)
+                                <h5>@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "" })</h5>
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control txtbox" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            @*<div class="form-group">
+                                <h5>@Html.LabelFor(model => model.Pwd, htmlAttributes: new { @class = "control-label" })</h5>
+                                @Html.EditorFor(model => model.Pwd, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Pwd, "", new { @class = "text-danger" })
+                            </div>*@
+                            <div class="form-group">
+                                <h5>@Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label" })</h5>
+                                @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control txtbox" } })
+                                @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <h5>@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label" })</h5>
+                                <select id="Gender" name="Gender" class="form-control txtbox">
+                                    <option value="True">男</option>
+                                    <option value="False">女</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <h5>@Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })</h5>
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control txtbox" } })
+                            </div>
+                            <div class="form-group">
+                                <h5>@Html.LabelFor(model => model.City_list.City_name, htmlAttributes: new { @class = "control-label" })</h5>
+                                @{List<SelectListItem> items = (List<SelectListItem>)ViewData["citiesitem"]; }
+                                @Html.DropDownList("City_no", items, new { @class = "form-control txtbox" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h5>@Html.LabelFor(model => model.Mem_photo, htmlAttributes: new { @class = "control-label" })</h5>
+                                @{var oldimgid = Model.Mem_photo.ToString(); }
+                                <img src="~/images/memberimg/@oldimgid" class=" NEWrounded-all" style="width:90%;height:90%" />
+                                <input id="oldimg" name="oldimg" type="hidden" value="@oldimgid" />
+                                <input id="Photo" name="Photo" type="file" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @Html.ActionLink("取消編輯", "MemData", new { area = "" }, new { @class = "btn btn-danger" })
+                    <input type="submit" value="儲存" class="btn btn-danger" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $('#Gender').val("@gendersel");//丟性別
+    </script>
+}

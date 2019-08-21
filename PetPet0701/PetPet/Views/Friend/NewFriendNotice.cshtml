@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PetPet.Models.Friend>
+@{
+    ViewBag.Title = "NewFriendNotice";
+}
+<link href="~/Content/font.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="NEWrounded-all col-md-12" style="background-color:white;">
+        <h2 class="Myfont mt-3">交友邀請</h2>
+      @Html.ActionLink("好友列表", "FriendIndex", new { area = "" }, new { @class = "btn btn-info" })
+            <div class="card bg-light NEWrounded-all col-md-12">
+                <div class="row">
+                    <label class="col-md-2">@Html.DisplayNameFor(model => model.Nickname)</label>
+                    <label class="col-md-3">@Html.DisplayNameFor(model => model.F_Email)</label>
+                    <label class="col-md-2">@Html.DisplayNameFor(model => model.Change_time)</label>
+                </div>
+
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="card bg-light NEWrounded-all col-md-12">
+                    <div class="row">
+                        <lable class="col-md-2">@item.Member.Name</lable>
+                        <lable class="col-md-3">@item.Email</lable>
+                        <lable class="col-md-2">@(item.Change_time.ToString("yyyy/dd/MM"))</lable>
+                        <div class="col-md-auto text-right">
+                            <form method="post" action="@Url.Action("AddYes","Friend")" enctype="multipart/form-data">
+                                <input id="newfriend" name="newfriend" value="@item.Email" class="d-none" />
+                                <input type="submit" value="加好友" class="btn btn-primary" />
+                                @Html.ActionLink("移除", "AddNo", new { removeid = item.Email }, new { @class = "btn btn-primary" })
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+@if (TempData["Rmsg"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["Rmsg"]));
+        alert(message);
+    </script>
+}
+

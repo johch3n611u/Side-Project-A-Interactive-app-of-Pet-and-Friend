@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{89133836-97D5-43DC-B4BE-C8DF55ADE99B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PetPet</RootNamespace>
+    <AssemblyName>PetPet</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44339</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.4</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.WebSockets, Version=0.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WebSockets.0.2.3.1\lib\net45\Microsoft.WebSockets.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BgStatisticalAnalysisController.cs" />
+    <Compile Include="Controllers\FriendController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LikeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LogoutController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
+    <Compile Include="Controllers\MatchController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PetVarietyController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\pTypeController.cs" />
+    <Compile Include="Controllers\QueenTyphoonController.cs" />
+    <Compile Include="Controllers\REGController.cs" />
+    <Compile Include="Controllers\ReportViewsController.cs" />
+    <Compile Include="Controllers\ViolationTypeController.cs" />
+    <Compile Include="GetAuthImg.ashx.cs">
+      <DependentUpon>GetAuthImg.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\City_list.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Friend.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Like_record.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mail.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mail_photo.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Member.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Messenger.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\News.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pet.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\petpet.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>petpet.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\petpet.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\petpet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>petpet.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PetType.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PetVariety.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Post.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Post_img.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportView.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Violation_type.cs">
+      <DependentUpon>petpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueenTyphoonContent\VerificationImg.ashx.cs">
+      <DependentUpon>VerificationImg.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\CVM.cs" />
+    <Compile Include="ViewModel\Postview.cs" />
+    <Compile Include="ViewModel\ReportViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\petpet.mdf" />
+    <Content Include="App_Data\petpet_log.ldf">
+      <DependentUpon>petpet.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\about.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="images\back.png" />
+    <Content Include="images\back2.png" />
+    <Content Include="images\BG.jpg" />
+    <Content Include="images\bg.png" />
+    <Content Include="images\camera.png" />
+    <Content Include="images\f01.png" />
+    <Content Include="images\f02.png" />
+    <Content Include="images\hearts.png" />
+    <Content Include="images\Logo.png" />
+    <Content Include="images\match.jpg" />
+    <Content Include="images\memberimg\439116.jpg" />
+    <Content Include="images\memberimg\5a3f138374c7e.jpg" />
+    <Content Include="images\memberimg\784697.jpg" />
+    <Content Include="images\memberimg\kkk.jpg" />
+    <Content Include="images\memberimg\match.png" />
+    <Content Include="images\memberimg\P01.jpg" />
+    <Content Include="images\memberimg\P02.jpg" />
+    <Content Include="images\memberimg\P03.jpg" />
+    <Content Include="images\memberimg\P04.jpg" />
+    <Content Include="images\memberimg\P05.jpg" />
+    <Content Include="images\memberimg\P06.jpg" />
+    <Content Include="images\memberimg\P07.jpg" />
+    <Content Include="images\memberimg\P08.jpg" />
+    <Content Include="images\memberimg\P10.jpg" />
+    <Content Include="images\memberimg\P12.jpg" />
+    <Content Include="images\memberimg\P13.jpg" />
+    <Content Include="images\memberimg\P14.jpg" />
+    <Content Include="images\memberimg\P15.jpg" />
+    <Content Include="images\memberimg\P16.jpg" />
+    <Content Include="images\memberimg\P17.jpg" />
+    <Content Include="images\memberimg\P18.jpg" />
+    <Content Include="images\memberimg\P20.jpg" />
+    <Content Include="images\memberimg\tyTyFRW.jpg" />
+    <Content Include="images\memberimg\下載.jpg" />
+    <Content Include="images\petimg\888.jpg" />
+    <Content Include="images\petimg\han.jpg" />
+    <Content Include="images\petimg\nico.jpg" />
+    <Content Include="images\petimg\P19.jpg" />
+    <Content Include="images\petimg\pp01.jpg" />
+    <Content Include="images\petpet.ico" />
+    <Content Include="images\postimg\001.jpg" />
+    <Content Include="images\postimg\0_6d8dce02f548db3f1ec6d68614630bf8_583x585.jpg" />
+    <Content Include="images\postimg\41984918_1732029703591004_1780047882988318335_n.jpg" />
+    <Content Include="images\postimg\644c863728a34daabd823b046e6ee044.jpg" />
+    <Content Include="images\postimg\6546546.jpg" />
+    <Content Include="images\postimg\d609115.jpg" />
+    <Content Include="images\postimg\P01.jpg" />
+    <Content Include="images\postimg\P02.jpg" />
+    <Content Include="images\postimg\P03.jpg" />
+    <Content Include="images\postimg\P04.jpg" />
+    <Content Include="images\postimg\P05.jpg" />
+    <Content Include="images\postimg\P06.jpg" />
+    <Content Include="images\postimg\P07.jpg" />
+    <Content Include="images\postimg\P08.jpg" />
+    <Content Include="images\postimg\P10.jpg" />
+    <Content Include="images\postimg\P12.jpg" />
+    <Content Include="images\postimg\P13.jpg" />
+    <Content Include="images\postimg\P14.jpg" />
+    <Content Include="images\postimg\P15.jpg" />
+    <Content Include="images\postimg\P16.jpg" />
+    <Content Include="images\postimg\P17.jpg" />
+    <Content Include="images\postimg\PPPP.jpg" />
+    <Content Include="images\postimg\QQQQ.jpg" />
+    <Content Include="images\postimg\tyTyFRW.jpg" />
+    <Content Include="images\postimg\下載 %281%29.jpg" />
+    <Content Include="images\Untitled.png" />
+    <Content Include="LOGO\Logo.png" />
+    <Content Include="Models\petpet.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>petpet.edmx</DependentUpon>
+      <LastGenOutput>petpet.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\petpet.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>petpet.edmx</DependentUpon>
+      <LastGenOutput>petpet.cs</LastGenOutput>
+    </Content>
+    <Content Include="NewsImages\03.jpg" />
+    <Content Include="NewsImages\04.jpg" />
+    <Content Include="NewsImages\05.jpg" />
+    <Content Include="NewsImages\06.jpg" />
+    <Content Include="NewsImages\07.jpg" />
+    <Content Include="petpet_style.css" />
+    <Content Include="QueenTyphoonContent\content\管理員寫信件2-3-2.html" />
+    <Content Include="QueenTyphoonContent\content\管理員操作頁面2.html" />
+    <Content Include="QueenTyphoonContent\content\管理員操作頁面說明2.html" />
+    <Content Include="QueenTyphoonContent\content\管理員瀏覽信件2-3-1.html" />
+    <Content Include="QueenTyphoonContent\content\管理最新消息2-2.html" />
+    <Content Include="QueenTyphoonContent\content\管理站內信2-3.html" />
+    <Content Include="QueenTyphoonContent\content\維護寵物資料2-4.html" />
+    <Content Include="QueenTyphoonContent\content\違規處理2-1.html" />
+    <Content Include="QueenTyphoonContent\libraries\1389116527-3443558870.png" />
+    <Content Include="QueenTyphoonContent\libraries\1389116527-3443558870lockpaper.png" />
+    <Content Include="QueenTyphoonContent\libraries\1389116527-3443558870lockpermission.png" />
+    <Content Include="QueenTyphoonContent\libraries\1389116527-3443558870unlock.png" />
+    <Content Include="QueenTyphoonContent\libraries\1mP6L.png" />
+    <Content Include="QueenTyphoonContent\libraries\bootstrap.bundle.min.js" />
+    <Content Include="QueenTyphoonContent\libraries\bootstrap.min.css" />
+    <Content Include="QueenTyphoonContent\libraries\carousel.css" />
+    <Content Include="QueenTyphoonContent\libraries\Chart.min.js" />
+    <Content Include="QueenTyphoonContent\libraries\dashboard.css" />
+    <Content Include="QueenTyphoonContent\libraries\dashboard.js" />
+    <Content Include="QueenTyphoonContent\libraries\feather.min.js" />
+    <Content Include="QueenTyphoonContent\libraries\ic_refresh_48px-128.png" />
+    <Content Include="QueenTyphoonContent\libraries\jquery-3.3.1.slim.min.js" />
+    <Content Include="QueenTyphoonContent\libraries\sample.png" />
+    <Content Include="QueenTyphoonContent\libraries\shejiyeiconzypg1rufsp5.gif" />
+    <Content Include="QueenTyphoonContent\libraries\shejiyeiconzypg1rufsp5.png" />
+    <Content Include="QueenTyphoonContent\libraries\signin.css" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作\Signin Template · Bootstrap.html" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作\Signin Template · Bootstrap_files\bootstrap.min.css" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作\Signin Template · Bootstrap_files\dashboard.css" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作頁面說明\製造業管理系統 精算版 功能操作說明 4-3 成品入庫建檔 - 富甲天下.html" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作頁面說明\製造業管理系統 精算版 功能操作說明 4-3 成品入庫建檔 - 富甲天下_files\5-3-01x.jpg" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作頁面說明\製造業管理系統 精算版 功能操作說明 4-3 成品入庫建檔 - 富甲天下_files\make.css" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作頁面說明\製造業管理系統 精算版 功能操作說明 4-3 成品入庫建檔 - 富甲天下_files\pmake-title.gif" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作頁面說明\製造業管理系統 精算版 功能操作說明 4-3 成品入庫建檔 - 富甲天下_files\pmake-title1.gif" />
+    <Content Include="QueenTyphoonContent\sample\管理員登入\Signin Template · Bootstrap.html" />
+    <Content Include="QueenTyphoonContent\sample\管理員登入\Signin Template · Bootstrap_files\bootstrap-solid.svg" />
+    <Content Include="QueenTyphoonContent\sample\管理員登入\Signin Template · Bootstrap_files\bootstrap.min.css" />
+    <Content Include="QueenTyphoonContent\sample\管理員登入\Signin Template · Bootstrap_files\signin.css" />
+    <Content Include="QueenTyphoonContent\sample\處理違規\Carousel Template · Bootstrap.html" />
+    <Content Include="QueenTyphoonContent\sample\處理違規\Carousel Template · Bootstrap_files\bootstrap.min.css" />
+    <Content Include="QueenTyphoonContent\sample\處理違規\Carousel Template · Bootstrap_files\carousel.css" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="GetAuthImg.ashx" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作\Signin Template · Bootstrap_files\bootstrap.bundle.min.js.下載" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作\Signin Template · Bootstrap_files\Chart.min.js.下載" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作\Signin Template · Bootstrap_files\dashboard.js.下載" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作\Signin Template · Bootstrap_files\feather.min.js.下載" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作\Signin Template · Bootstrap_files\jquery-3.3.1.slim.min.js.下載" />
+    <Content Include="QueenTyphoonContent\sample\管理員操作頁面說明\製造業管理系統 精算版 功能操作說明 4-3 成品入庫建檔 - 富甲天下_files\ga.js.下載" />
+    <Content Include="QueenTyphoonContent\sample\處理違規\Carousel Template · Bootstrap_files\bootstrap.bundle.min.js.下載" />
+    <Content Include="QueenTyphoonContent\sample\處理違規\Carousel Template · Bootstrap_files\jquery-3.3.1.slim.min.js.下載" />
+    <Content Include="QueenTyphoonContent\VerificationImg.ashx" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Models\petpet.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>petpet.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\petpet.edmx.diagram">
+      <DependentUpon>petpet.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Shared\_CMSLayout.cshtml" />
+    <Content Include="Views\Shared\_MEMLayout.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Member\MemData.cshtml" />
+    <Content Include="Views\Post\PostIndex.cshtml" />
+    <Content Include="Views\Post\DetailPost.cshtml" />
+    <Content Include="Views\Match\MatchIndex.cshtml" />
+    <Content Include="Views\Match\Match.cshtml" />
+    <Content Include="Views\Match\Matchfail.cshtml" />
+    <Content Include="Views\REG\MemberCreate.cshtml" />
+    <Content Include="Views\Member\MemberEdit.cshtml" />
+    <Content Include="Views\Member\MyPost.cshtml" />
+    <Content Include="Views\Member\MyPet.cshtml" />
+    <Content Include="Views\Member\PetCreate.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutFunction.cshtml" />
+    <Content Include="Views\Shared\_QTnotLoginLayout.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\PetVariety\Create.cshtml" />
+    <Content Include="Views\PetVariety\Edit.cshtml" />
+    <Content Include="Views\PetVariety\Index.cshtml" />
+    <Content Include="Views\pType\Create.cshtml" />
+    <Content Include="Views\pType\Edit.cshtml" />
+    <Content Include="Views\pType\Index.cshtml" />
+    <Content Include="Views\QueenTyphoon\QueenTyphoonIndex.cshtml" />
+    <Content Include="Views\QueenTyphoon\QueenTyphoonLogin.cshtml" />
+    <Content Include="Views\ReportViews\Index.cshtml" />
+    <Content Include="Views\ReportViews\Reportprocessing.cshtml" />
+    <Content Include="Views\ViolationType\Create.cshtml" />
+    <Content Include="Views\ViolationType\Edit.cshtml" />
+    <Content Include="Views\ViolationType\Index.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\Member\EditPwd.cshtml" />
+    <Content Include="Views\Member\PetEdit.cshtml" />
+    <Content Include="Views\Friend\FriendIndex.cshtml" />
+    <Content Include="Views\Friend\NewFriendNotice.cshtml" />
+    <Content Include="Views\Mail\MailIndex.cshtml" />
+    <Content Include="Views\Mail\ReadMail.cshtml" />
+    <Content Include="Views\Mail\CopyMailIndex.cshtml" />
+    <Content Include="Views\Home\ViewNews.cshtml" />
+    <Content Include="Views\Like\_Like.cshtml" />
+    <Content Include="Views\Message\_MsgForPost.cshtml" />
+    <Content Include="Views\Message\_CreateMsg.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\BgStatisticalAnalysis\Index.cshtml" />
+    <Content Include="Views\Member\_PetVariety.cshtml" />
+    <Content Include="Views\REG\Auth_Ok.cshtml" />
+    <Content Include="Views\Login\forgetpassword.cshtml" />
+    <Content Include="Views\Login\GetNewPwd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Logout\" />
+    <Folder Include="Views\Notification\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>9872</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:45333/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

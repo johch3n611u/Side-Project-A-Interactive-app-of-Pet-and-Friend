@@ -1,0 +1,56 @@
+﻿@model IEnumerable<PetPet.Models.Admin>
+
+@{
+    ViewBag.Title = "管理員清單";
+    Layout = "~/Views/Shared/_LayoutFunction.cshtml";
+}
+
+<h2 class="alert-info">管理員清單</h2>
+
+<p>
+    @Html.ActionLink("新增管理員", "Create", "", new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Admin_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Admin_account)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin_account)
+            </td>
+
+            <td>
+                @Html.ActionLink("修改密碼", "Edit", new { id = item.Admin_no }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.Admin_no }, new { @class = "btn btn-danger", onclick = "return confirm('確定刪除?')" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $("[href='/Admin/Delete/1']").hide()
+
+</script>
+@if (TempData["message"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        alert(message);
+    </script>
+}

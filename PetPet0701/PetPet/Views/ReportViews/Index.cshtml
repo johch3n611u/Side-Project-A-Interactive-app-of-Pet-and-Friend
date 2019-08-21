@@ -1,0 +1,102 @@
+﻿@model IEnumerable<PetPet.Models.ReportView>
+
+@{
+    ViewBag.Title = "檢舉列表";
+    Layout = "~/Views/Shared/_LayoutFunction.cshtml"; }
+
+<h2 class="alert-info">檢舉列表</h2>
+@Html.ActionLink("違規類別管理", "Index", "ViolationType") |
+@*@Html.ActionLink("顯示未處理列表", "IndexOrdered", "ViolationType")*@
+
+@if (ViewBag.CommandOrderedBag == 1)
+{<a href="@Url.Action("Index")" class="">顯示綜合列表 |</a>
+
+    <a href="@Url.Action("IndexOrdered2")" class=""> 顯示已處理列表</a>
+    <a class="text-danger" readonly="readonly"><strong>。以下為未處理列表。</strong>  </a>
+}
+
+else if (ViewBag.CommandOrderedBag == 2)
+{ <a href="@Url.Action("Index")" class="">顯示綜合列表 |</a>
+
+    <a href="@Url.Action("IndexOrdered")" class=""> 顯示未處理列表</a>
+    <a class="text-danger" readonly="readonly"> <strong>。以下為已處理列表。</strong> </a>
+}
+
+else
+{<a href="@Url.Action("IndexOrdered")" class="">顯示未處理列表 |</a>
+
+    <a href="@Url.Action("IndexOrdered2")" class=""> 顯示已處理列表</a>
+
+    <a class="text-danger" readonly="readonly"><strong> 。以下為綜合列表。</strong> </a>
+}
+
+ | <a href="@Url.Action("Index")" class="" onclick="alert('您已執行超高速自動解凍一鍵傻瓜處理系統...')">一鍵傻瓜處理器自動解凍監禁時間到的人們</a>
+
+<table class="table text-center">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Report_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Expr2)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Report_amount)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Post_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VType_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Freeze_day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Post_Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unfreeze_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Processing_stsus)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Report_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Expr2)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Report_amount)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Post_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VType_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Freeze_day) 天
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Post_Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unfreeze_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Processing_stsus)
+            </td>
+            <td>
+                <a href="@Url.Action("Reportprocessing")?Post_no=@item.Post_no&Email=@item.Post_Email&Report_no=@item.Report_no" class="btn btn-info">審查</a>
+                @* 非主功能需要抓動態Processing_status值判斷 轉換 按鈕顏色 *@
+            </td>
+        </tr>
+    }
+</table>

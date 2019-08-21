@@ -1,0 +1,28 @@
+﻿@model PetPet.Models.Messenger
+
+@*留言區*@
+@Html.AntiForgeryToken()
+
+<div class="form-inline">
+
+    <div class="col-0 col-lg-0"></div>
+    <div class="row col-12">
+        <span class="">
+            <img src="~/images/memberimg/@ViewBag.usericon" style="width:2.3em;height:2.3em" class="rounded-circle" />
+
+        </span>
+        <span class="col-10">
+            <input id="Message" type="text" name="Message" class="form-control mw-100 col-10 w-100 txtbox" placeholder="想說些甚麼?" maxlength="100"/>
+            <span id="pwd2info" name="pwd2info" style="color:red" class="text-danger"></span>
+
+        </span>
+        <span class="">
+            <input id="Hidden1" type="hidden" />
+            <input type="submit" value="留言" class="btn btn-info"/>
+        </span>
+        @*留言*@
+        @*<input type="submit" value="&#xf27a;" class="fa  btn btn-info w-auto" />*@
+
+    </div>
+    <div class="col-0 col-lg-0"></div>
+</div>

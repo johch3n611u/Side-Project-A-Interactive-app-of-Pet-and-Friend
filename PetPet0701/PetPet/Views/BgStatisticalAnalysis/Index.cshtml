@@ -1,0 +1,444 @@
+﻿
+@{
+    ViewBag.Title = "系統數據統計";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="auto" class="">
+<!-- https://www.chartjs.org/samples/latest/ -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/QueenTyphoonContent/libraries/BgStatisticalAnalysis/Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/bootstrap.css" rel="stylesheet" />
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="~/QueenTyphoonContent/libraries/BgStatisticalAnalysis/Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/dashboard.css" rel="stylesheet" />
+    <style type="text/css">
+        /* Chart.js */
+
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+    <link href="~/QueenTyphoonContent/libraries/BgStatisticalAnalysis/Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/translateelement.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="sidebar-sticky">
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span style="border:2px red solid;color:black;font-size:18px;background-color:yellow;padding:10px;">系統數據統計</span>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#測試測試1" style=" color:blue; font-size:16px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>                                各季發文數量統計圖
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#測試測試2" style=" color:blue; font-size:16px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>                                會員生日季節統計圖
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#測試測試3" style=" color:blue; font-size:16px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>                               發文違規類別統計圖
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#測試測試4" style=" color:blue; font-size:16px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>                                會員寵物類別統計圖
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="padding:20px 20px 0px 20px;">
+                <p id="測試測試1" style="padding:20px 20px 10px 20px;" display: none></p>
+                <div style="padding:0px 50px 200px 50px;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        @*<h2 class="h2 alert-info">四季文章數量暨發文者與文章之關係圖</h2>*@
+                        <h2 class="h2 alert-info">各季發文數量統計圖</h2>
+                        <a href="#"><img src="~/QueenTyphoonContent/libraries/ffffffff.png" width="50" height="50"></a>
+                        @* padding: 25px 50px 75px 100px;
+                            top padding is 25px
+                            right padding is 50px
+                            bottom padding is 75px
+                            left padding is 100px *@
+                    </div>
+                    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="1061" height="447" style="display: block; width: 1061px; height: 447px;"></canvas>
+                </div>
+                <p id="測試測試2" style="padding:20px 20px 50px 20px;" display: none></p>
+                <div style="padding:0px 50px 200px 50px;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        @*<h2 class="h2 alert-info">四季會員生日暨活動行銷探討關係圖</h2>*@
+                        <h2 class="h2 alert-info">會員生日季節統計圖</h2>
+                        <a href="#"><img src="~/QueenTyphoonContent/libraries/ffffffff.png" width="50" height="50"></a>
+                    </div>
+                    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart2" width="1061" height="447" style="display: block; width: 1061px; height: 447px;"></canvas>
+                </div>
+                <p id="測試測試3" style="padding:20px 20px 50px 20px;" display: none></p>
+                <div style="padding:0px 50px 200px 50px;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        @*<h2 class="h2 alert-info">會員違規項目暨常態檢舉分布圖</h2>*@
+                        <h2 class="h2 alert-info">發文違規類別統計圖</h2>
+                        <a href="#"><img src="~/QueenTyphoonContent/libraries/ffffffff.png" width="50" height="50"></a>
+                    </div>
+                    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart3" width="1061" height="447" style="display: block; width: 1061px; height: 447px;"></canvas>
+                </div>
+                <p id="測試測試4" style="padding:20px 20px 50px 20px;" display: none></p>
+                <div style="padding:0px 50px 200px 50px;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        @*<h2 class="h2 alert-info">會員飼養寵物數量暨寵物種類分布圖</h2>*@
+                        <h2 class="h2 alert-info">會員寵物類別統計圖</h2>
+                        <a href="#"><img src="~/QueenTyphoonContent/libraries/ffffffff.png" width="50" height="50"></a>
+                    </div>
+                    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart4" width="1061" height="447" style="display: block; width: 1061px; height: 447px;"></canvas>
+                </div>
+            </main>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- 以下不能刪 -->
+    @*<script src="./Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/jquery-3.3.1.slim.min.js.下載" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>*@
+    <script src="~/QueenTyphoonContent/libraries/BgStatisticalAnalysis/Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/jquery-3.3.1.slim.min.js"></script>
+
+    <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+
+    @*<script src="./Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/bootstrap.bundle.js.下載"></script>*@
+    <script src="~/QueenTyphoonContent/libraries/BgStatisticalAnalysis/Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/bootstrap.bundle.js"></script>
+
+
+    @*<script src="./Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/feather.min.js.下載"></script>*@
+    <script src="~/QueenTyphoonContent/libraries/BgStatisticalAnalysis/Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/feather.min.js"></script>
+
+
+    @*<script src="./Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/Chart.min.js.下載"></script>*@
+    <script src="~/QueenTyphoonContent/libraries/BgStatisticalAnalysis/Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/Chart.min.js"></script>
+
+
+    <!-- inline是因為新東西 這樣改比較容易  -->
+    <script>
+
+        var r, g, b, color;
+        r = Math.floor(Math.random() * 200);
+        g = Math.floor(Math.random() * 200);
+        b = Math.floor(Math.random() * 200);
+        color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+
+
+        var piecolor = new Array(@ViewBag.MaxlengthPetType);
+
+            for (var i=0;i< @ViewBag.MaxlengthPetType;i++) {
+
+                var r, g, b, color;
+                r = Math.floor(Math.random() * 200);
+                g = Math.floor(Math.random() * 200);
+                b = Math.floor(Math.random() * 200);
+                color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+
+
+                piecolor[i] = color;
+
+
+            }
+
+
+        var PetTypecolor = new Array(@ViewBag.MaxlengthViolation_type);
+
+        for (var i = 0; i < @ViewBag.MaxlengthViolation_type;i++) {
+
+                var r, g, b, color;
+                r = Math.floor(Math.random() * 200);
+                g = Math.floor(Math.random() * 200);
+                b = Math.floor(Math.random() * 200);
+                color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+                PetTypecolor[i] = color;
+            }
+
+
+                /* globals Chart:false, feather:false */
+
+                (function () {
+                'use strict'
+
+                    feather.replace()
+
+                    // Graphs
+                var ctx = document.getElementById('myChart')
+                    // eslint-disable-next-line no-unused-vars
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                labels: [
+                    '第一季',
+                    '第二季',
+                    '第三季',
+                    '第四季',
+
+
+                ],
+                            datasets: [{
+                    data: [
+                        @ViewBag.SeasonOne,
+                        @ViewBag.SeasonSecond,
+                        @ViewBag.SeasonThird,
+                        @ViewBag.SeasonFourth,
+
+                    ],
+                                lineTension: 0,
+                                backgroundColor: 'transparent',
+                                borderColor: '#007bff',
+                                label: '發文數量',
+                                borderWidth: 4,
+                                pointBackgroundColor: '#007bff'
+                            },@*{
+                    data: [
+                        @ViewBag.TotalMember,
+                        @ViewBag.TotalMember,
+                        @ViewBag.TotalMember,
+                        @ViewBag.TotalMember,
+
+                    ],
+                                lineTension: 0,
+                                backgroundColor: 'transparent',
+                                    borderColor: '#ff003f',
+                                    label: '四季會員平均數量',
+                                borderWidth: 4,
+                                    pointBackgroundColor: '#ff003f'
+                            }*@]
+                        },
+                        options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                                    }
+                        }]
+                            },
+                            legend: {
+                    display: true
+                            }
+                }
+            })
+                }())</script>
+    <script>
+                /* globals Chart:false, feather:false */
+
+                (function () {
+                    'use strict'
+
+                    feather.replace()
+
+                    // Graphs
+                    var ctx = document.getElementById('myChart2')
+                    // eslint-disable-next-line no-unused-vars
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: [
+                                '總數',
+                                '春',
+                                '夏',
+                                '秋',
+                                '冬',
+
+                            ],
+                            datasets: [{
+                                data: [
+                                    @ViewBag.MemberMan,
+                                    @ViewBag.MemberManSeasonOne,
+                                    @ViewBag.MemberManSeasonSecond,
+                                    @ViewBag.MemberManSeasonThird,
+                                    @ViewBag.MemberManSeasonFourth,
+
+                                ],
+                                lineTension: 0,
+                                backgroundColor: 'rgba(102,186,183,0.8)',
+                                label: '男',
+                                borderColor: '#007bff',
+                                borderWidth: 1,
+                                pointBackgroundColor: '#007bff'
+                            }, {
+                                    data: [
+                                    @ViewBag.MemberWoman,
+                                    @ViewBag.MemberWomanSeasonOne,
+                                    @ViewBag.MemberWomanSeasonSecond,
+                                    @ViewBag.MemberWomanSeasonThird,
+                                    @ViewBag.MemberWomanSeasonFourth,
+
+                                ],
+                                lineTension: 0,
+                                backgroundColor: 'rgba(245,150,170,0.8)',
+                                label: '女',
+                                borderColor: 'rgba(208,16,76,0.8)',
+                                borderWidth: 1,
+                                pointBackgroundColor: 'rgba(208,16,76,0.8)'
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: true
+                            }
+                        }
+                    })
+                }())</script>
+    <script>
+                /* globals Chart:false, feather:false */
+
+                (function () {
+                    'use strict'
+
+                    feather.replace()
+
+                    // Graphs
+                    var ctx = document.getElementById('myChart3')
+                    // eslint-disable-next-line no-unused-vars
+                    var myChart = new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: [
+                                @{
+
+                                      for (var i = 0; i < ViewBag.MaxlengthViolation_type; i++)
+                                      {
+                                          @*string a = "'";
+                                          @a.ToString()
+                                          @ViewBag.PetTypeNames[i].ToString()
+                                          string b = ",";
+                                          @b.ToString()*@
+
+                                          @Html.Raw("'"+ ViewBag.Violation_typeNames[i].ToString()+"',")
+                                      }
+                                      }
+
+                            ],
+                            datasets: [{
+                                data: [
+                                @{
+                                      for (var i = 0; i < ViewBag.MaxlengthReport; i++)
+                                      {
+                                          @Html.Raw("'"+ ViewBag.ReportNumbers[i].ToString()+"',")
+                                      }
+                                      }
+                                ],
+                                lineTension: 0,
+                                backgroundColor: 'rgba(255,196,8,0.4)',
+                                borderColor: PetTypecolor,
+                                borderWidth: 2,
+                                pointBackgroundColor: PetTypecolor
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: false
+                            }
+                        }
+                    })
+                }())</script>
+    <script>
+                /* globals Chart:false, feather:false */
+
+                (function () {
+                    'use strict'
+
+                    feather.replace()
+
+                    // Graphs
+                    var ctx = document.getElementById('myChart4')
+                    // eslint-disable-next-line no-unused-vars
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels:
+
+                                [
+                                  @{
+
+                                      for (var i = 0; i < ViewBag.MaxlengthPetType; i++)
+                                      {
+                                          @*string a = "'";
+                                          @a.ToString()
+                                          @ViewBag.PetTypeNames[i].ToString()
+                                          string b = ",";
+                                          @b.ToString()*@
+
+                                          @Html.Raw("'"+ ViewBag.PetTypeNames[i].ToString()+"',")
+                                      }
+                                      }
+
+                            ],
+                            datasets: [{
+                                data: [
+                                      @{
+                                      for (var i = 0; i < ViewBag.MaxlengthPetType; i++)
+                                      {
+                                          @Html.Raw("'"+ ViewBag.PetTypeNumbers[i].ToString()+"',")
+                                      }
+                                      }
+                                ],
+                                lineTension: 0,
+                                backgroundColor: piecolor,
+                                borderColor: '#FFFFFF',
+                                borderWidth: 4,
+                                pointBackgroundColor: piecolor
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: true
+                            }
+                        }
+                    })
+                }())</script>
+
+
+</body>
+</html>

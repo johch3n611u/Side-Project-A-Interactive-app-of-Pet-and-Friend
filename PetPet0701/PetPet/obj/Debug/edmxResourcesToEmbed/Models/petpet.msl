@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="petpetModelStoreContainer" CdmEntityContainer="petpetEntities">
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="petpetModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Admin_no" ColumnName="Admin_no" />
+          <ScalarProperty Name="Admin_account" ColumnName="Admin_account" />
+          <ScalarProperty Name="Admin_pwd" ColumnName="Admin_pwd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="City_list">
+      <EntityTypeMapping TypeName="petpetModel.City_list">
+        <MappingFragment StoreEntitySet="City_list">
+          <ScalarProperty Name="City_no" ColumnName="City_no" />
+          <ScalarProperty Name="City_name" ColumnName="City_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Friend">
+      <EntityTypeMapping TypeName="petpetModel.Friend">
+        <MappingFragment StoreEntitySet="Friend">
+          <ScalarProperty Name="Friend_no" ColumnName="Friend_no" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="F_Email" ColumnName="F_Email" />
+          <ScalarProperty Name="Add_ststus" ColumnName="Add_ststus" />
+          <ScalarProperty Name="Change_time" ColumnName="Change_time" />
+          <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Like_record">
+      <EntityTypeMapping TypeName="petpetModel.Like_record">
+        <MappingFragment StoreEntitySet="Like_record">
+          <ScalarProperty Name="Like_no" ColumnName="Like_no" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Post_no" ColumnName="Post_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mail">
+      <EntityTypeMapping TypeName="petpetModel.Mail">
+        <MappingFragment StoreEntitySet="Mail">
+          <ScalarProperty Name="Mail_no" ColumnName="Mail_no" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Re_email" ColumnName="Re_email" />
+          <ScalarProperty Name="Mail_tital" ColumnName="Mail_tital" />
+          <ScalarProperty Name="Mail_content" ColumnName="Mail_content" />
+          <ScalarProperty Name="Send_time" ColumnName="Send_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mail_photo">
+      <EntityTypeMapping TypeName="petpetModel.Mail_photo">
+        <MappingFragment StoreEntitySet="Mail_photo">
+          <ScalarProperty Name="Photo_no" ColumnName="Photo_no" />
+          <ScalarProperty Name="Mail_no" ColumnName="Mail_no" />
+          <ScalarProperty Name="Mail_Photo1" ColumnName="Mail_Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Member">
+      <EntityTypeMapping TypeName="petpetModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="City_no" ColumnName="City_no" />
+          <ScalarProperty Name="Mem_photo" ColumnName="Mem_photo" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Match_Enable" ColumnName="Match_Enable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messenger">
+      <EntityTypeMapping TypeName="petpetModel.Messenger">
+        <MappingFragment StoreEntitySet="Messenger">
+          <ScalarProperty Name="Msg_no" ColumnName="Msg_no" />
+          <ScalarProperty Name="Post_no" ColumnName="Post_no" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Msg_content" ColumnName="Msg_content" />
+          <ScalarProperty Name="Msg_Enable" ColumnName="Msg_Enable" />
+          <ScalarProperty Name="Mag_time" ColumnName="Mag_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="petpetModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="News_no" ColumnName="News_no" />
+          <ScalarProperty Name="Admin_no" ColumnName="Admin_no" />
+          <ScalarProperty Name="N_tital" ColumnName="N_tital" />
+          <ScalarProperty Name="N_content" ColumnName="N_content" />
+          <ScalarProperty Name="N_photo" ColumnName="N_photo" />
+          <ScalarProperty Name="N_post_time" ColumnName="N_post_time" />
+          <ScalarProperty Name="N_post_deadline" ColumnName="N_post_deadline" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pet">
+      <EntityTypeMapping TypeName="petpetModel.Pet">
+        <MappingFragment StoreEntitySet="Pet">
+          <ScalarProperty Name="Pet_no" ColumnName="Pet_no" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PetVariety_no" ColumnName="PetVariety_no" />
+          <ScalarProperty Name="Pet_name" ColumnName="Pet_name" />
+          <ScalarProperty Name="Pet_gender" ColumnName="Pet_gender" />
+          <ScalarProperty Name="Pet_photo" ColumnName="Pet_photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PetType">
+      <EntityTypeMapping TypeName="petpetModel.PetType">
+        <MappingFragment StoreEntitySet="PetType">
+          <ScalarProperty Name="PetType_no" ColumnName="PetType_no" />
+          <ScalarProperty Name="PetType_name" ColumnName="PetType_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PetVariety">
+      <EntityTypeMapping TypeName="petpetModel.PetVariety">
+        <MappingFragment StoreEntitySet="PetVariety">
+          <ScalarProperty Name="PetVariety_no" ColumnName="PetVariety_no" />
+          <ScalarProperty Name="PetType_no" ColumnName="PetType_no" />
+          <ScalarProperty Name="Variety_name" ColumnName="Variety_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post">
+      <EntityTypeMapping TypeName="petpetModel.Post">
+        <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="Post_no" ColumnName="Post_no" />
+          <ScalarProperty Name="Post_Email" ColumnName="Post_Email" />
+          <ScalarProperty Name="Post_time" ColumnName="Post_time" />
+          <ScalarProperty Name="Post_title" ColumnName="Post_title" />
+          <ScalarProperty Name="Post_content" ColumnName="Post_content" />
+          <ScalarProperty Name="Post_Enable" ColumnName="Post_Enable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post_img">
+      <EntityTypeMapping TypeName="petpetModel.Post_img">
+        <MappingFragment StoreEntitySet="Post_img">
+          <ScalarProperty Name="Photo_no" ColumnName="Photo_no" />
+          <ScalarProperty Name="Post_no" ColumnName="Post_no" />
+          <ScalarProperty Name="Post_photo" ColumnName="Post_photo" />
+          <ScalarProperty Name="PImg_Enable" ColumnName="PImg_Enable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report">
+      <EntityTypeMapping TypeName="petpetModel.Report">
+        <MappingFragment StoreEntitySet="Report">
+          <ScalarProperty Name="Report_no" ColumnName="Report_no" />
+          <ScalarProperty Name="Post_no" ColumnName="Post_no" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="VType_no" ColumnName="VType_no" />
+          <ScalarProperty Name="Report_amount" ColumnName="Report_amount" />
+          <ScalarProperty Name="Processing_stsus" ColumnName="Processing_stsus" />
+          <ScalarProperty Name="Unfreeze_date" ColumnName="Unfreeze_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="petpetModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Violation_type">
+      <EntityTypeMapping TypeName="petpetModel.Violation_type">
+        <MappingFragment StoreEntitySet="Violation_type">
+          <ScalarProperty Name="VType_no" ColumnName="VType_no" />
+          <ScalarProperty Name="VType_name" ColumnName="VType_name" />
+          <ScalarProperty Name="Freeze_day" ColumnName="Freeze_day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportView">
+      <EntityTypeMapping TypeName="petpetModel.ReportView">
+        <MappingFragment StoreEntitySet="ReportView">
+          <ScalarProperty Name="Post_Email" ColumnName="Post_Email" />
+          <ScalarProperty Name="Report_no" ColumnName="Report_no" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+          <ScalarProperty Name="VType_no" ColumnName="VType_no" />
+          <ScalarProperty Name="VType_name" ColumnName="VType_name" />
+          <ScalarProperty Name="Freeze_day" ColumnName="Freeze_day" />
+          <ScalarProperty Name="Post_no" ColumnName="Post_no" />
+          <ScalarProperty Name="Processing_stsus" ColumnName="Processing_stsus" />
+          <ScalarProperty Name="Unfreeze_date" ColumnName="Unfreeze_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

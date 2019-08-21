@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "配對失敗!";
+    var semail = "";
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Singin/LoidnIndex");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+    }
+}
+<div class="row pt-5">
+        <div class="text-center m-auto">
+            <h2 class="text-white">配對失敗!!!</h2>
+            <p>@Html.ActionLink("換個條件重新配對!", "MatchIndex", "Match", new { semail = @semail }, new { @class = "btn btn-primary" })</p>
+        </div>
+</div>
+
+
+
+
+<script>
+    alert('糟糕沒有人!換個條件再試試!');
+</script>
+

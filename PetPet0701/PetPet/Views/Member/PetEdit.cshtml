@@ -1,0 +1,88 @@
+﻿@model PetPet.Models.Pet
+
+@{
+    ViewBag.Title = "寵物資料編輯";
+
+    var semail = "";
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Singin/LoidnIndex");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+    }
+    string gendersel = ViewBag.petgender;//寵物性別
+
+}
+<link href="~/Content/font.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="container NEWrounded-top" style=" background-color:white">
+        <br />
+        <form method="post" action="@Url.Action("PetEdit")" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div class="card bg-light NEWrounded-top">
+                <div class="card-header">
+                    <h2>寵物資料編輯</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Pet_no)
+                                <h5>@Html.LabelFor(model => model.Pet_name, htmlAttributes: new { @class = "control-label" })</h5>
+                                @Html.EditorFor(model => model.Pet_name, new { htmlAttributes = new { @class = "form-control txtbox" } })
+                                @Html.ValidationMessageFor(model => model.Pet_name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <h5>@Html.LabelFor(model => model.PetVariety.Variety_name, htmlAttributes: new { @class = "control-label" })</h5>
+                                @*@{List<SelectListItem> items = (List<SelectListItem>)ViewData["PetVaritem"]; }
+                                @Html.DropDownList("Variety_no", items, new { @class = "form-control" })*@
+                                <select id="Varietyno" name="Varietyno" class="form-control txtbox">
+                                    @{
+                                        //string petvarseled = Model.PetVariety_no.ToString();//寵物品種
+                                        foreach (var item in ViewBag.petvar)
+                                        {
+                                            <option value="@item.PetVariety_no">@item.Variety_name</option>
+                                        }
+                                    }
+                                </select>
+                                @*<p>@petvarseled</p>*@
+                                <p>@Model.PetVariety_no</p>@*看原本是哪個品種*@
+                            </div>
+                            <div class="form-group">
+                                <h5>@Html.LabelFor(model => model.Pet_gender, htmlAttributes: new { @class = "control-label" })</h5>
+                                <select id="Gender" name="Gender" class="form-control txtbox">
+                                    <option value="True">小王子</option>
+                                    <option value="False">小公主</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h5>@Html.LabelFor(model => model.Pet_photo, htmlAttributes: new { @class = "control-label" })</h5>
+                                @{var oldimgid = Model.Pet_photo.ToString(); }
+                                <img src="~/images/petimg/@oldimgid" class=" NEWrounded-all" style="width:90%;height:90%" />
+                                <input id="oldimg" name="oldimg" type="hidden" value="@oldimgid" />
+                                <input id="Photo" name="Photo" type="file" class="form-control txtbox" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @Html.ActionLink("取消編輯", "MyPet", new { area = "" }, new { @class = "btn btn-danger" })
+                    <input type="submit" value="儲存" class="btn btn-danger" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#Gender').val("@gendersel");//丟性別
+        $('#Varietyno').val("@Model.PetVariety_no");//丟品種
+    </script>
+}

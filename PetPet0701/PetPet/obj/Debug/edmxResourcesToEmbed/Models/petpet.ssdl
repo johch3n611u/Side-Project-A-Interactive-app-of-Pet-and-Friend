@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="petpetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_no" />
+    </Key>
+    <Property Name="Admin_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Admin_account" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Admin_pwd" Type="varchar" MaxLength="4000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City_list">
+    <Key>
+      <PropertyRef Name="City_no" />
+    </Key>
+    <Property Name="City_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="City_name" Type="nvarchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Friend">
+    <Key>
+      <PropertyRef Name="Friend_no" />
+    </Key>
+    <Property Name="Friend_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="F_Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Add_ststus" Type="bit" Nullable="false" />
+    <Property Name="Change_time" Type="datetime" Nullable="false" />
+    <Property Name="Nickname" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="Like_record">
+    <Key>
+      <PropertyRef Name="Like_no" />
+    </Key>
+    <Property Name="Like_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Post_no" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mail">
+    <Key>
+      <PropertyRef Name="Mail_no" />
+    </Key>
+    <Property Name="Mail_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Re_email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Mail_tital" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Mail_content" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Send_time" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mail_photo">
+    <Key>
+      <PropertyRef Name="Photo_no" />
+    </Key>
+    <Property Name="Photo_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mail_no" Type="int" Nullable="false" />
+    <Property Name="Mail_Photo" Type="varchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Pwd" Type="varchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Birthday" Type="datetime" Nullable="false" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="City_no" Type="int" Nullable="false" />
+    <Property Name="Mem_photo" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Enable" Type="bit" Nullable="false" />
+    <Property Name="Match_Enable" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Messenger">
+    <Key>
+      <PropertyRef Name="Msg_no" />
+    </Key>
+    <Property Name="Msg_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Post_no" Type="int" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Msg_content" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Msg_Enable" Type="bit" Nullable="false" />
+    <Property Name="Mag_time" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="News_no" />
+    </Key>
+    <Property Name="News_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Admin_no" Type="int" Nullable="false" />
+    <Property Name="N_tital" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="N_content" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="N_photo" Type="varchar" MaxLength="100" />
+    <Property Name="N_post_time" Type="datetime" Nullable="false" />
+    <Property Name="N_post_deadline" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pet">
+    <Key>
+      <PropertyRef Name="Pet_no" />
+    </Key>
+    <Property Name="Pet_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="PetVariety_no" Type="int" Nullable="false" />
+    <Property Name="Pet_name" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Pet_gender" Type="bit" Nullable="false" />
+    <Property Name="Pet_photo" Type="varchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PetType">
+    <Key>
+      <PropertyRef Name="PetType_no" />
+    </Key>
+    <Property Name="PetType_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PetType_name" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PetVariety">
+    <Key>
+      <PropertyRef Name="PetVariety_no" />
+    </Key>
+    <Property Name="PetVariety_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PetType_no" Type="int" Nullable="false" />
+    <Property Name="Variety_name" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Post_no" />
+    </Key>
+    <Property Name="Post_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Post_Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Post_time" Type="datetime" Nullable="false" />
+    <Property Name="Post_title" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Post_content" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Post_Enable" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Post_img">
+    <Key>
+      <PropertyRef Name="Photo_no" />
+    </Key>
+    <Property Name="Photo_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Post_no" Type="int" Nullable="false" />
+    <Property Name="Post_photo" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="PImg_Enable" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Report">
+    <Key>
+      <PropertyRef Name="Report_no" />
+    </Key>
+    <Property Name="Report_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Post_no" Type="int" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="VType_no" Type="int" Nullable="false" />
+    <Property Name="Report_amount" Type="int" Nullable="false" />
+    <Property Name="Processing_stsus" Type="bit" Nullable="false" />
+    <Property Name="Unfreeze_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Violation_type">
+    <Key>
+      <PropertyRef Name="VType_no" />
+    </Key>
+    <Property Name="VType_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VType_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Freeze_day" Type="int" Nullable="false" />
+  </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'petpet.dbo.ReportView' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="ReportView">
+    <Key>
+      <PropertyRef Name="Post_Email" />
+      <PropertyRef Name="Report_no" />
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="Expr2" />
+      <PropertyRef Name="VType_no" />
+      <PropertyRef Name="VType_name" />
+      <PropertyRef Name="Freeze_day" />
+      <PropertyRef Name="Post_no" />
+      <PropertyRef Name="Processing_stsus" />
+    </Key>
+    <Property Name="Post_Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Report_no" Type="int" Nullable="false" />
+    <Property Name="Expr1" Type="int" Nullable="false" />
+    <Property Name="Expr2" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="VType_no" Type="int" Nullable="false" />
+    <Property Name="VType_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Freeze_day" Type="int" Nullable="false" />
+    <Property Name="Post_no" Type="int" Nullable="false" />
+    <Property Name="Processing_stsus" Type="bit" Nullable="false" />
+    <Property Name="Unfreeze_date" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__Friend__Email__17F790F9">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Friend" Type="Self.Friend" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Friend">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Like_reco__Email__160F4887">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Like_record" Type="Self.Like_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Like_record">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Like_reco__Post___1CBC4616">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="Like_record" Type="Self.Like_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Post_no" />
+      </Principal>
+      <Dependent Role="Like_record">
+        <PropertyRef Name="Post_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mail__Email__1332DBDC">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Mail" Type="Self.Mail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Mail">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mail_phot__Mail___19DFD96B">
+    <End Role="Mail" Type="Self.Mail" Multiplicity="1" />
+    <End Role="Mail_photo" Type="Self.Mail_photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mail">
+        <PropertyRef Name="Mail_no" />
+      </Principal>
+      <Dependent Role="Mail_photo">
+        <PropertyRef Name="Mail_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Member__City_no__22751F6C">
+    <End Role="City_list" Type="Self.City_list" Multiplicity="1" />
+    <End Role="Member" Type="Self.Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City_list">
+        <PropertyRef Name="City_no" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="City_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Messenger__Email__151B244E">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Messenger" Type="Self.Messenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Messenger">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Messenger__Post___1BC821DD">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="Messenger" Type="Self.Messenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Post_no" />
+      </Principal>
+      <Dependent Role="Messenger">
+        <PropertyRef Name="Post_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__News__Admin_no__1AD3FDA4">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Admin_no" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="Admin_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pet__Email__14270015">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pet__PetVariety___208CD6FA">
+    <End Role="PetVariety" Type="Self.PetVariety" Multiplicity="1" />
+    <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PetVariety">
+        <PropertyRef Name="PetVariety_no" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="PetVariety_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PetVariet__PetTy__1F98B2C1">
+    <End Role="PetType" Type="Self.PetType" Multiplicity="1" />
+    <End Role="PetVariety" Type="Self.PetVariety" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PetType">
+        <PropertyRef Name="PetType_no" />
+      </Principal>
+      <Dependent Role="PetVariety">
+        <PropertyRef Name="PetType_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Post__Post_Email__18EBB532">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="Post_Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Post_img__Post_n__1DB06A4F">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="Post_img" Type="Self.Post_img" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Post_no" />
+      </Principal>
+      <Dependent Role="Post_img">
+        <PropertyRef Name="Post_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Report__Email__17036CC0">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Report" Type="Self.Report" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Report">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Report__Post_no__1EA48E88">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="Report" Type="Self.Report" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Post_no" />
+      </Principal>
+      <Dependent Role="Report">
+        <PropertyRef Name="Post_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Report__VType_no__2180FB33">
+    <End Role="Violation_type" Type="Self.Violation_type" Multiplicity="1" />
+    <End Role="Report" Type="Self.Report" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Violation_type">
+        <PropertyRef Name="VType_no" />
+      </Principal>
+      <Dependent Role="Report">
+        <PropertyRef Name="VType_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="petpetModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City_list" EntityType="Self.City_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Friend" EntityType="Self.Friend" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Like_record" EntityType="Self.Like_record" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mail" EntityType="Self.Mail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mail_photo" EntityType="Self.Mail_photo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Messenger" EntityType="Self.Messenger" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PetType" EntityType="Self.PetType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PetVariety" EntityType="Self.PetVariety" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Post_img" EntityType="Self.Post_img" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Violation_type" EntityType="Self.Violation_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportView" EntityType="Self.ReportView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ReportView].[Post_Email] AS [Post_Email], 
+    [ReportView].[Report_no] AS [Report_no], 
+    [ReportView].[Expr1] AS [Expr1], 
+    [ReportView].[Expr2] AS [Expr2], 
+    [ReportView].[VType_no] AS [VType_no], 
+    [ReportView].[VType_name] AS [VType_name], 
+    [ReportView].[Freeze_day] AS [Freeze_day], 
+    [ReportView].[Post_no] AS [Post_no], 
+    [ReportView].[Processing_stsus] AS [Processing_stsus], 
+    [ReportView].[Unfreeze_date] AS [Unfreeze_date]
+    FROM [dbo].[ReportView] AS [ReportView]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Friend__Email__17F790F9" Association="Self.FK__Friend__Email__17F790F9">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Friend" EntitySet="Friend" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Like_reco__Email__160F4887" Association="Self.FK__Like_reco__Email__160F4887">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Like_record" EntitySet="Like_record" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Like_reco__Post___1CBC4616" Association="Self.FK__Like_reco__Post___1CBC4616">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Like_record" EntitySet="Like_record" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mail__Email__1332DBDC" Association="Self.FK__Mail__Email__1332DBDC">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Mail" EntitySet="Mail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mail_phot__Mail___19DFD96B" Association="Self.FK__Mail_phot__Mail___19DFD96B">
+      <End Role="Mail" EntitySet="Mail" />
+      <End Role="Mail_photo" EntitySet="Mail_photo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Member__City_no__22751F6C" Association="Self.FK__Member__City_no__22751F6C">
+      <End Role="City_list" EntitySet="City_list" />
+      <End Role="Member" EntitySet="Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Messenger__Email__151B244E" Association="Self.FK__Messenger__Email__151B244E">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Messenger" EntitySet="Messenger" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Messenger__Post___1BC821DD" Association="Self.FK__Messenger__Post___1BC821DD">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Messenger" EntitySet="Messenger" />
+    </AssociationSet>
+    <AssociationSet Name="FK__News__Admin_no__1AD3FDA4" Association="Self.FK__News__Admin_no__1AD3FDA4">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pet__Email__14270015" Association="Self.FK__Pet__Email__14270015">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Pet" EntitySet="Pet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pet__PetVariety___208CD6FA" Association="Self.FK__Pet__PetVariety___208CD6FA">
+      <End Role="PetVariety" EntitySet="PetVariety" />
+      <End Role="Pet" EntitySet="Pet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PetVariet__PetTy__1F98B2C1" Association="Self.FK__PetVariet__PetTy__1F98B2C1">
+      <End Role="PetType" EntitySet="PetType" />
+      <End Role="PetVariety" EntitySet="PetVariety" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Post__Post_Email__18EBB532" Association="Self.FK__Post__Post_Email__18EBB532">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Post_img__Post_n__1DB06A4F" Association="Self.FK__Post_img__Post_n__1DB06A4F">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Post_img" EntitySet="Post_img" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Report__Email__17036CC0" Association="Self.FK__Report__Email__17036CC0">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Report" EntitySet="Report" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Report__Post_no__1EA48E88" Association="Self.FK__Report__Post_no__1EA48E88">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Report" EntitySet="Report" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Report__VType_no__2180FB33" Association="Self.FK__Report__VType_no__2180FB33">
+      <End Role="Violation_type" EntitySet="Violation_type" />
+      <End Role="Report" EntitySet="Report" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

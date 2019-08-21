@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PetPet.Models.Like_record>
+
+
+<form method="post" action="@Url.Action("_Like",new { PostId=ViewBag.PostId})" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace"
+      data-ajax-update="#@ViewBag.PostId" id="formLike">
+    <div id="@ViewBag.PostId">
+        <button id="Like" type="submit" class="btn btn-link">
+            @{
+                int likes = 0;
+                foreach (var data in Model)
+                {
+                    if (data.Post_no == Convert.ToUInt32(@ViewBag.PostId))
+                    {
+                        likes++;
+                    }
+                }
+            }
+            <span class='fas fa-heart' style='font-size:1.3rem;color:#ff4646;letter-spacing:10px'>@likes</span>
+        </button>
+    </div>
+</form>

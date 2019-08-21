@@ -1,0 +1,103 @@
+﻿@model PetPet.Models.Mail
+
+@{
+    ViewBag.Title = "ReadMail";
+}
+
+<div>
+    <a href="@Url.Action("MailIndex")"><img src="~/images/back.png" style="width:2em" /></a>
+</div>
+<div class="container NEWrounded-all mh-100" style=" background-color:white;height:100%">
+    <br />
+    <h2 class="Myfont">@Model.Mail_tital</h2>
+    <div>
+        <div class="text-right">
+            <span class="text-muted">@Model.Email</span>
+            <span class="text-muted">@Model.Send_time</span>
+        </div>
+        <br />
+        <div>
+            @Model.Mail_content
+        </div>
+        <div>
+            @{
+                var Img = Model.Mail_photo;
+
+                foreach (var img in Img)
+                {
+                    <img src="/images/mailimg/@img.Mail_Photo1.ToString()" />
+                }
+            }
+        </div>
+
+    </div>
+
+    <div class="" id="newmail" role="dialog">
+        <div class="modal-content bg-light">
+            <div class="modal-body">
+                <form method="post" action="@Url.Action("CreateMail", "Mail")" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input id="Receiver" autofocus name="Receiver" type="text" readonly value='@Model.Email' class="form-control mw-100" required />
+                    </div>
+
+                    <input id="Mail_title" autofocus name="Mail_title" type="text" value="@Model.Mail_tital" class="form-control mw-100" hidden />
+
+                    <div class="form-group">
+                        <label>
+                            @Model.Member.Name (@Model.Email) 於 @Model.Send_time 寫道:
+                            > @Model.Mail_content
+                        </label>
+                        <textarea id="Mail_content" name="Mail_content" rows="6" class="form-control mw-100" style="resize:none;" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        @*<label>照片 :</label>*@
+                        <label>
+                            <input id="Mail_photo" name="Mail_photo" class="d-none" type="file" multiple="multiple">
+                            <img src="~/images/camera.png" style="width:3em;cursor:pointer" />
+                        </label>
+                        @*<input type="file" name="Post_photo" id="Post_photo" multiple="multiple" required class="form-control-file" />*@
+                    </div>
+                    <div id="ViewImg" class="mw-100" overflow:hidden;">
+                        <p>目前沒有圖片ㄛ~</p>
+                    </div>
+
+                    <br />
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-petpet">
+                            <img src="~/images/back2.png" style="width:1.3em" />
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section scripts{
+    <script>
+
+        $('#Mail_photo').change(function () {
+            $('#ViewImg').html(""); // 清除預覽
+            readURL(this);
+        });
+
+        function readURL(input) {
+            if (input.files && input.files.length > 0) {
+                for (var i = 0; i < input.files.length; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var img = $("<img class='w-25'>").attr('src', e.target.result);
+                        $('#ViewImg').append(img);
+                    }
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+            else {
+                var noPhoto = $("<p>目前沒有圖片ㄛ~</p>");
+                $('#ViewImg').append(noPhoto);
+            }
+        }
+
+
+    </script>
+}

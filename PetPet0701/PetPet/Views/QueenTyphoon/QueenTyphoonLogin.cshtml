@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "PetPet後台管理系統";
+    Layout = "~/Views/Shared/_QTnotLoginLayout.cshtml";
+
+    HttpCookie AutoLoginCookie = new HttpCookie("AutoLoginCookie")
+    {
+        Expires = DateTime.Now.AddDays(2)
+    };
+
+    AutoLoginCookie.Values.Add("Admin_account_Cookie", "");
+
+    AutoLoginCookie.Values.Add("Admin_pwd_Cookie", "");
+
+    AutoLoginCookie.Values.Add("AutoLogin_status", "");
+
+    Response.Cookies.Add(AutoLoginCookie);
+
+}
+
+<body class="text-center" style="background-color:#f2d3ae">
+    <form class="form-signin" accept-charset="@Url.Action("~/QueenTyphoon/QueenTyphoonIndex")" method="post">
+        <img class="mb-4" src="~/QueenTyphoonContent/libraries/sample.png" alt="" width="144" height="144">
+        <h1 class="h4 mb-3 font-weight-normal">PetPet後台管理系統</h1>
+        <label for="Admin_account" class="sr-only">管理員帳號</label>
+        <input id="Admin_account" name="Admin_account" class="form-control" placeholder="管理員帳號" required="required" autofocus="" value="@Request.Cookies["AutoLoginCookie"]["Admin_account_Cookie"]">
+        <label for="Admin_pwd" class="sr-only">管理員密碼</label>
+        <input type="password" id="Admin_pwd" name="Admin_pwd" class="form-control" placeholder="管理員密碼" required="required" value="@Request.Cookies["AutoLoginCookie"]["Admin_pwd_Cookie"]">
+        <div class="checkbox mb-3">
+            <label><input type="checkbox" id="AutoLogin" name="AutoLogin" value="remember-me" @Request.Cookies["AutoLoginCookie"]["AutoLogin_status"]>自動登入</label>
+        </div>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="登入" id="Submit">
+        @Html.Raw(ViewBag.Message)
+        <!-- 做測試 -->
+        @Html.Raw(ViewBag.VerificationImgErrorbutAdminTrue)
+        <footer class="mt-5 mb-3 text-muted workpractice">
+            @*<p>FROMBOOSTRAPSAMPLE</p>*@
+            <p style="font-size:14px">&copy; @DateTime.Now.Year - PetPet寵物社群平台</p>
+        </footer>
+    </form>
+    @Html.Raw(ViewBag.TryAgain)
+    @*<script>
+            document.write(document.cookie);
+        </script>*@
+
+
+
+    <script>
+        @Session["TryAgain"]
+    </script>
+</body>
+
+

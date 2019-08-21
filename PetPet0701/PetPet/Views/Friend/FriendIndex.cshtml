@@ -1,0 +1,86 @@
+﻿@model IEnumerable<PetPet.Models.Friend>
+
+@{
+    ViewBag.Title = "FriendIndex";
+}
+<link href="~/Content/font.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="NEWrounded-all col-md-12" style="background-color:white;">
+        <h2 class="Myfont mt-3">好友列表</h2>
+        <lable>你有 @ViewBag.AddFriendNotice 個交友邀請</lable>
+        @Html.ActionLink("查看邀請", "NewFriendNotice",new { area=""},new { @class="btn btn-info"})
+        @*<input id="Button1" type="button" value="你有 @ViewBag.AddFriendNotice 個交友邀請" src="~/Friend/NewFriendNotice" />*@
+        <div class="row">
+            <div class="card bg-light NEWrounded-all col-md-12">
+                <div class="row">
+                    <label class="col-md-2">@Html.DisplayNameFor(model => model.Nickname)</label>
+                    <label class="col-md-3">@Html.DisplayNameFor(model => model.F_Email)</label>
+                    <label class="col-md-2">@Html.DisplayNameFor(model => model.Add_ststus)</label>
+                    <label class="col-md-2">@Html.DisplayNameFor(model => model.Change_time)</label>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+                var status = "已確認";
+                if (item.Add_ststus == false)
+                {
+                    status = "確認中";
+                }
+                <div class="card bg-light NEWrounded-all col-md-12">
+                    <div class="row">
+                        <lable class="col-md-2">@item.Nickname</lable>
+                        <lable class="col-md-3">@item.F_Email</lable>
+                        <lable class="col-md-2">@status</lable>
+                        <lable class="col-md-2">@(item.Change_time.ToString("yyyy/dd/MM"))</lable>
+                        <label class="col-md-auto text-right">
+                            <button id="showEdName" class="btn btn-warning" style="font-size:0.1em" data-target="#EdfName" data-toggle="modal"
+                                    name="@item.Friend_no" onclick='$("#Fno").val(@item.Friend_no);$("#FriendNewName").val("@item.Nickname");'>
+                                編輯
+                            </button>
+                        </label>
+                        <label class="col-md-auto">
+
+                            @Html.ActionLink("刪除好友", "DeleteFriend", new { FriendEmail = item.F_Email }, new { onclick = "return confirm('確定要刪除嗎??')", @class = "btn btn-danger", style = "font-size:0.1em" })
+                        </label>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@*改暱稱表格*@
+<div class="modal" id="EdfName" role="dialog">
+    <form method="post" action="@Url.Action("EditFName", "Friend")">
+        <div class="modal-dialog">
+            <div class="modal-content bg-light">
+                <div class="modal-header">
+                    <h3 class="modal-title Myfont">編輯暱稱</h3>
+                    <a class="close" data-dismiss="modal" style="cursor:pointer" >×</a>
+                </div>
+
+                <div class="modal-body">
+                    <input id="Fno" type="text" name="Fno" value="" class="d-none" />
+                    <input id="FriendNewName" type="text" name="FriendNewName" class="form-control offset-2 col-sm-7 txtbox" required />
+                    <br />
+                    <div class="text-right">
+                        <button class="btn btn-info" type="submit">確定</button>
+                        <button type="button" class="btn btn-secondary" style="cursor:pointer" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@if (TempData["Rmsg"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["Rmsg"]));
+        alert(message);
+    </script>
+}

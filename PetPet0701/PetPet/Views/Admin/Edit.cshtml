@@ -1,0 +1,104 @@
+﻿@model PetPet.Models.Admin
+
+@{
+    ViewBag.Title = "修改密碼";
+    Layout = "~/Views/Shared/_LayoutFunction.cshtml";
+}
+
+<h2>修改密碼</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*@Html.HiddenFor(model => model.Admin_no)*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Admin_no, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Admin_no, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.Admin_account, new { htmlAttributes = new { @class = "form-control" } })*@
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Admin_account, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Admin_account, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Admin_account, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Admin_pwd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Admin_pwd, new { htmlAttributes = new { @class = "form-control", Type = "password" } })
+                <label>
+                    <input type="checkbox" id="show_password" style="vertical-align:middle;" />顯示密碼
+                </label>
+                @Html.ValidationMessageFor(model => model.Admin_pwd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="passwordchange" name="passwordchange" type="submit" value="修改" class="btn btn-warning" />
+            </div>
+        </div>
+    </div>
+}
+
+@{
+    string strclass = "";
+    if (Convert.ToInt32(Session["Admin"]) != 1)
+    {
+
+        strclass = "d-none";
+
+    }
+
+}
+<div id="backtolist" class='@strclass'>
+    @Html.ActionLink("返回管理員清單", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $('#Admin_no').attr("readonly", "readonly")
+    $('#Admin_account').attr("readonly", "readonly")
+
+
+    $(function () {
+        // 先取得 #Admin_pwd 及產生一個文字輸入框
+        var $password = $('#Admin_pwd'),
+            $passwordInput = $('<input type="text" name="' + $password.attr('name') + '" class=" form-control" />');
+
+        // 當勾選顯示密碼框時
+        $('#show_password').click(function () {
+            // 如果是勾選則...
+            if (this.checked) {
+                // 用 $passwordInput 來取代 $password
+                // 並把 $passwordInput 的值設為 $password 的值
+                $password.replaceWith($passwordInput.val($password.val()));
+            } else {
+                // 用 $password 來取代 $passwordInput
+                // 並把 $password 的值設為 $passwordInput 的值
+                $passwordInput.replaceWith($password.val($passwordInput.val()));
+            }
+        });
+    });
+
+
+    $("#passwordchange").click(function () {
+        alert('密碼變更成功。');
+    });
+
+</script>

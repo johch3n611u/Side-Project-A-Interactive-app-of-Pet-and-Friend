@@ -1,0 +1,41 @@
+﻿@model IEnumerable<PetPet.Models.Post>
+
+@{
+    ViewBag.Title = "我的文章";
+}
+
+<link href="~/Content/font.css" rel="stylesheet" />
+
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+<link href="~/Content/font.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="container NEWrounded-top" style=" background-color:white">
+        <h2 class="Myfont mt-3">我的文章</h2>
+        <div class="row">
+            @foreach (var item in Model.Reverse())
+            {
+                var x = Model.Where(m => m.Post_no == item.Post_no).First().Post_img.First().Post_photo;
+
+                string imgsrc2 = (@Html.DisplayFor(modelItem => item.Member.Mem_photo)).ToString();
+                <div class="col-md-4 col-sm-6 p-3">
+                    <div class="card bg-light  border-0 ">
+                        <div class="card-header ">
+                            <img src="~/images/memberimg/@imgsrc2" style="width:40px;height:40px" class="rounded-circle" />
+                            <a>@item.Post_title</a>
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="@Url.Action("DetailPost","Post", new { @name = item.Post_no })">
+
+                                <img src="~/images/postimg/@x" style="width:95%;" class="img-thumbnail" />
+                            </a>
+                            <h5>@item.Post_content</h5>
+                            <p>@item.Post_time</p>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

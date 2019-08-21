@@ -1,0 +1,97 @@
+﻿@model IEnumerable<PetPet.Models.News>
+
+    @{
+    ViewBag.Title = "最新消息清單";
+    Layout = "~/Views/Shared/_LayoutFunction.cshtml";
+    }
+
+    <h2 class="alert-info">最新消息清單</h2>
+
+    <p>
+        @{
+        string color0 = "", color1 = "", color2 = "";
+        if (TempData["color"] != null)
+        {
+        if (TempData["color"].ToString() == "0")
+        {
+        color0 = "background-color:yellow";
+        }
+        else
+        {
+        color1 = "background-color:pink";
+        }
+        }
+        else
+        {
+        color2 = "background-color:#D18CFC";
+        }
+        }
+        @Html.ActionLink("新增最新消息", "Create", "", new { @class = "btn btn-success" })
+        <span id="overdue2" style=@color2>
+            @Html.ActionLink("所有", "Index")
+        </span>
+        <span id="overdue0" style=@color0>
+            @Html.ActionLink("未過期", "Index", new { overdue = 0 })
+        </span>
+        <span id="overdue1" style=@color1>
+            @Html.ActionLink("已過期", "Index", new { overdue = 1 })
+        </span>
+
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.N_tital)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.N_content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.N_post_time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.N_post_deadline)
+            </th>
+            <th>
+                管理者
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.N_tital)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.N_content)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.N_post_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.N_post_deadline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin.Admin_account)
+            </td>
+
+
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.News_no }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("詳細資料", "Details", new { id = item.News_no }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.News_no }, new { @class = "btn btn-danger", onclick = "return confirm('確定刪除?')" })
+            </td>
+        </tr>
+        }
+
+
+    </table>
+    @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    }
+
+

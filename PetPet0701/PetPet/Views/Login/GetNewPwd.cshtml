@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "設定新密碼";
+    if (TempData["msg"] != null)
+    {
+        <script type="text/javascript">
+            var msg = @Html.Raw(Json.Encode(TempData["msg"]));
+            alert(msg);
+        </script>
+    }
+}
+
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+<link href="~/Content/login.css" rel="stylesheet" />
+
+<div class="pt-5 m-auto col-sm-12 col-md-6 col-lg-4">
+    <form method="post" enctype="multipart/form-data">
+        <div class="card bg-light text-center justify-content-center">
+            @Html.AntiForgeryToken()
+            <h2>設定新密碼</h2>
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <br />
+                <input type="email" id="mail" name="mail" class="d-none" value="@ViewBag.mail" required>
+                <div>
+                    <lable class="control-label">輸入新密碼</lable>
+                    <input id="newpwd" name="newpwd" type="password" class="form-control txtbox" placeholder="再輸入一次密碼" required />
+                    <span id="pwd2info" name="pwd2info" style="color:red" class="text-danger"></span>
+                </div>
+                <div>
+                    <lable class="control-label">再次輸入密碼</lable>
+                    <input id="Pwd2" name="Pwd2" type="password" class="form-control txtbox" placeholder="再輸入一次密碼" required />
+                    <span id="pwd2info" name="pwd2info" style="color:red" class="text-danger"></span>
+                </div>
+                <br />
+                <button class="btn btn-large btn-o col-10 btn-block" type="submit">確定</button>
+                <br />
+                <div class="text-center">
+                    <span style="color:red">@ViewBag.Msg</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script>
+        //前端驗證密碼
+        function chickpwd(state) {
+            if (state) {
+                $('#pwd2info').text("OK!");
+            }
+            else {
+                $('#pwd2info').text("請輸入相同密碼");
+            }
+        }
+        $('#Pwd2').keyup(function () {
+            if (($('#newpwd').val()) == ($('#Pwd2').val())) {
+                chickpwd(true);
+            } else {
+                chickpwd(false);
+            }
+        })
+        $('#newpwd').keyup(function () {
+            if (($('#newpwd').val()) == ($('#Pwd2').val())) {
+                chickpwd(true);
+            } else {
+                chickpwd(false);
+            }
+        })
+    </script>
+}

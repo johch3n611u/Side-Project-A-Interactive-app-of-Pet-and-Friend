@@ -1,0 +1,146 @@
+﻿body {
+    font-family: Microsoft JhengHei,"微軟正黑",-apple-system, BlinkMacSystemFont, "微软雅黑","Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.btn-o {
+    color: #ffffff;
+    background-color: #ff6e2c;
+    border-color: #ff6e2c;
+    border-radius: 50px
+}
+
+    .btn-o:hover {
+        color: #ff6e2c;
+        background-color: #fffaf8;
+        border-color: #ff6e2c;
+        border-radius: 50px;
+    }
+
+    .btn-o:focus, .btn-o.focus {
+        box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+    }
+
+    .btn-o.disabled, .btn-o:disabled {
+        color: #ffffff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+.cardl {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: #fff;
+    border-radius: 2rem;
+    box-shadow: 20px 20px 50px rgba(138, 37, 12, 0.49)
+}
+
+    .cardl > hr {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .cardl > .list-group:first-child .list-group-item:first-child {
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+    }
+
+    .cardl > .list-group:last-child .list-group-item:last-child {
+        border-bottom-right-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+    }
+
+.cardl-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.cardl-title {
+    margin-bottom: 0.75rem;
+}
+
+.cardl-subtitle {
+    margin-top: -0.375rem;
+    margin-bottom: 0;
+}
+
+.cardl-text:last-child {
+    margin-bottom: 0;
+}
+
+.cardl-link:hover {
+    text-decoration: none;
+}
+
+.cardl-link + .cardl-link {
+    margin-left: 1.25rem;
+}
+
+.cardl-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+    .cardl-header:first-child {
+        border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+    }
+
+    .cardl-header + .list-group .list-group-item:first-child {
+        border-top: 0;
+    }
+
+.cardl-footer {
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+    .cardl-footer:last-child {
+        border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+    }
+
+.cardl-header-tabs {
+    margin-right: -0.625rem;
+    margin-bottom: -0.75rem;
+    margin-left: -0.625rem;
+    border-bottom: 0;
+}
+
+.cardl-header-pills {
+    margin-right: -0.625rem;
+    margin-left: -0.625rem;
+}
+
+.cardl-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem;
+}
+
+.cardl-img {
+    width: 100%;
+    border-radius: calc(0.25rem - 1px);
+}
+
+.cardl-img-top {
+    width: 100%;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+}
+
+.cardl-img-bottom {
+    width: 100%;
+    border-bottom-right-radius: calc(0.25rem - 1px);
+    border-bottom-left-radius: calc(0.25rem - 1px);
+}

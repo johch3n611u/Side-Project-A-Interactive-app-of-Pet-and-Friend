@@ -1,0 +1,100 @@
+﻿@model IEnumerable<PetPet.Models.Messenger>
+
+@{
+    var semail = "";
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Login/Login");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+    }
+}
+<form action="@Url.Action("_MsgForPost",new { PostId = ViewBag.PostId})"
+      data-ajax="true" data-ajax-method="post" data-ajax-mode="replace"
+      data-ajax-update="#MsgAjax" id="form0" method="post">
+
+    <div id="MsgAjax" class="">
+        @Html.Action("_CreateMsg", "Message", new { PostId = ViewBag.PostId })
+
+        <br />
+        @foreach (var data in Model)
+        {
+            string imgsrc = "";
+            if (data.Email == semail)
+            {
+                imgsrc = data.Member.Mem_photo;
+            }
+            else
+            {
+                if (data.Member.Gender == false)
+                {
+                    imgsrc = "girl.png";
+                }
+                else
+                {
+                    imgsrc = "boy.png";
+                }
+                foreach (var friend in ViewBag.Friend)
+                {
+                    if (friend.F_Email == data.Email && friend.Add_ststus == true)
+                    {
+                        imgsrc = (@Html.DisplayFor(modelItem => data.Member.Mem_photo)).ToString();
+                    }
+                }
+            }
+            @*7.3 在/Shared/_CommentsForPhoto.cshtml加入IEnumerable<T>及foreach (var item in Model){}*@
+            <div class="panel bg-light" id="P_@data.Msg_no">
+                @*@{
+                        string aaa= "panel_" + @data.Msg_no.ToString();
+                    }*@
+
+                <div class="panel-heading">
+                    <img src="~/images/memberimg/@imgsrc" style="width:40px;height:40px" class="rounded-circle" />
+                    <h4>@data.Member.Name</h4>
+                </div>
+                <div class="panel-body">
+                    <p>@data.Msg_content</p>
+                    <p class="text-right">
+                        發佈時間:@data.Mag_time
+                    </p>
+                </div>
+                @*//7-8-2 在_CommentsForPhoto.cshtml加入Delete連結*@
+                <div class="panel-footer">
+                    @if (data.Email == semail)
+                    {
+                        @Ajax.ActionLink("收回", "ReMessage", "Message",new { remsg = data.Msg_no, id = data.Post_no },
+                       new AjaxOptions() { HttpMethod = "Delete", Confirm = "確定要收回嗎?收回就再也看不到囉~!", UpdateTargetId = "MsgAjax" }
+                       ,new { @class= "btn btn-danger text-light", style = "font-size:0.1em;" })
+
+                        <button id="showEdMessage_@data.Msg_no" class="btn btn-warning" style="font-size:0.1em"
+                                onclick="$('#@data.Msg_no').removeClass('d-none'); $('#MsgBox_@data.Msg_no').removeClass('d-none');
+                        $('#CancelEdMessage_@data.Msg_no').removeClass('d-none');$('#showEdMessage_@data.Msg_no').addClass('d-none')">
+                            編輯
+                        </button>
+
+                        <input id="MsgBox_@data.Msg_no" type="text"maxlength="100" class="d-none form-control-sm" onkeyup="
+                                           var edmsg = $('#MsgBox_@data.Msg_no').val();
+                                           var edmsgurl='/Message/EdMessage?EdPostId=@data.Post_no&EdMsgId=@data.Msg_no&edmessage='+edmsg;
+                                           $('#@data.Msg_no').attr('href',edmsgurl);" />
+
+                        @Ajax.ActionLink("送出", "EdMessage", "Message",new { },
+                        new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "MsgAjax" }
+                        ,new { @class= "btn btn-danger text-light d-none", style = "font-size:0.1em;", @id= @data.Msg_no })
+
+                        <button id="CancelEdMessage_@data.Msg_no" class="btn btn-info d-none" style="font-size:0.1em"
+                                onclick="$('#MsgBox_@data.Msg_no').addClass('d-none');$('#CancelEdMessage_@data.Msg_no').addClass('d-none');$('#@data.Msg_no').addClass('d-none')
+                                ;$('#showEdMessage_@data.Msg_no').removeClass('d-none');">取消
+                        </button>
+                        @*<input id="MsgBox2_@data.Msg_no" type="text" />*@
+
+                    }
+
+                </div>
+            </div>
+            @*@Html.Action("_EdMessage", "Message", new { EdMsgNo = data.Msg_no })*@
+
+        }
+    </div>
+</form>

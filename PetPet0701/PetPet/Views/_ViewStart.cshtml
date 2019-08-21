@@ -1,0 +1,30 @@
+﻿@*@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+@{
+    string ControllerName = Convert.ToString(HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"]);
+    switch (ControllerName.ToUpper())
+    {
+        case "QUEENTYPHOON":
+            Layout = "~/Views/Shared/_QTnotLoginLayout.cshtml";
+            break;
+        case "PETVARIETY":
+            Layout = "~/Views/Shared/_CMSLayout.cshtml";
+            break;
+        case "HOME":
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+        case "MEMBER":
+            Layout = "~/Views/Shared/_MEMLayout.cshtml";
+            break;
+        case "FRIEND":
+            Layout = "~/Views/Shared/_MEMLayout.cshtml";
+            break;
+        case "MAIL":
+            Layout = "~/Views/Shared/_MEMLayout.cshtml";
+            break;
+        default:
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+    }
+}   

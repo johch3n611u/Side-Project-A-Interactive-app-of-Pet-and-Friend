@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "EditPwd";
+    var semail = "";
+    var epwdinfo = "";
+
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Login/Login");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+        //if (ViewBag.Editpwd == true)
+        //{
+        //    ViewBag.ealert = "alert('密碼修改成功');";
+        //}
+        //else
+        //{
+        //    ViewBag.ealert = "alert('密碼錯誤');";
+        //}
+        Response.Redirect("~/Member/MemData");
+    }
+
+}
+
+<h2>EditPwd</h2>
+
+@section scripts{
+    <script>
+
+    </script>
+    }
+

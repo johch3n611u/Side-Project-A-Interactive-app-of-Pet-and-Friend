@@ -1,0 +1,157 @@
+﻿@model IEnumerable<PetPet.Models.Mail>
+
+@{
+    ViewBag.Title = "MailIndex";
+    var semail = "";
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Login/Login");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+    }
+}
+
+<link href="~/Content/font.css" rel="stylesheet" />
+<p>
+    @*@Html.ActionLink("寫信", "Create", new { area = "" }, new { @class = "btn btn-danger Myfont" })*@
+    <div>
+        <label id="shownewmail" class="btn btn-o Myfont" style="cursor:pointer" data-target="#newmail" data-toggle="modal">寫信</label>
+    </div>
+</p>
+<div class="container NEWrounded-all mh-100" style=" background-color:white;height:100%">
+    <form method="post" action="@Url.Action("DeleteMail",new { num=0})">
+        <p><input type="checkbox" name="all" onclick="check_all(this,'DelMail')" />全選/全不選</p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mail_tital)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Send_time)
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input id="DelMail" name="DelMail" value="@item.Mail_no" type="checkbox" />
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        <p>
+                            <a href="@Url.Action("ReadMail")?id=@item.Mail_no">
+                                @Html.DisplayFor(modelItem => item.Mail_tital)
+                            </a>
+                        </p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Send_time)
+                    </td>
+
+                    @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Mail_no }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Mail_no }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Mail_no })
+                        </td>*@
+                </tr>
+            }
+        </table>
+        <input id="Submit1" type="submit" value="刪除勾選的信件" class="btn btn-petpet" />
+
+    </form>
+
+    <div class="modal fade" id="newmail" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-light">
+                <div class="modal-body">
+                    <a class="close" data-dismiss="modal" style="cursor:pointer">×</a>
+                    <form method="post" action="@Url.Action("CreateMail", "Mail")" enctype="multipart/form-data">
+                        <div class="form-group">
+
+                            <label class="">To收件人 :</label>
+                            <select id="Receiver" name="Receiver" class="form-control mw-100 txtbox">
+                                @foreach (var ff in ViewBag.Friends)
+                                {
+                                    <option value="@ff.F_Email">@ff.Nickname</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+
+                            <label class="">標題 :</label>
+                            <input id="Mail_title" autofocus name="Mail_title" type="text" class="form-control mw-100 txtbox" required" />
+                        </div>
+                        <div class="form-group">
+
+                            <textarea id="Mail_content" name="Mail_content" rows="16" class="form-control mw-100 txtbox" required style="resize:none;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            @*<label>照片 :</label>*@
+                            <label class="">
+                                <input id="Mail_photo" name="Mail_photo" class="d-none" type="file" multiple="multiple">
+                                <img src="~/images/camera.png" style="width:3em;cursor:pointer" />
+                            </label>
+                            @*<input type="file" name="Post_photo" id="Post_photo" multiple="multiple" required class="form-control-file" />*@
+                        </div>
+                        <div id="ViewImg" class="mw-100" overflow:hidden;">
+                            <p>目前沒有圖片ㄛ~</p>
+                        </div>
+
+                        <br />
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">送出</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["msg"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["msg"]));
+        alert(message);
+    </script>
+}
+
+@section scripts{
+    <script>
+
+        $('#Mail_photo').change(function () {
+            $('#ViewImg').html(""); // 清除預覽
+            readURL(this);
+        });
+
+        function readURL(input) {
+            if (input.files && input.files.length > 0) {
+                for (var i = 0; i < input.files.length; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var img = $("<img class='w-25'>").attr('src', e.target.result);
+                        $('#ViewImg').append(img);
+                    }
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+            else {
+                var noPhoto = $("<p>目前沒有圖片ㄛ~</p>");
+                $('#ViewImg').append(noPhoto);
+            }
+        }
+
+        function check_all(obj, Name) {
+            var checkboxs = document.getElementsByName(Name);
+            for (var i = 0; i < checkboxs.length; i++) { checkboxs[i].checked = obj.checked; }
+        }
+    </script>
+}

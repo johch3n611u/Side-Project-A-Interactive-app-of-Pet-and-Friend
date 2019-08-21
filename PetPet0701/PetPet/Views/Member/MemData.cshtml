@@ -1,0 +1,156 @@
+﻿@model PetPet.Models.Member
+@{
+    ViewBag.Title = "會員中心";
+    var Name = Model.Name;
+    var Pwd = Model.Pwd;
+    var Birthday = Model.Birthday;
+    var Phone = Model.Phone;
+    var City = Model.City_list.City_name;
+    var semail = "";
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Login/Login");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+    }
+    if (TempData["msg"] != null)
+    {
+        <script type="text/javascript">
+            var msg = @Html.Raw(Json.Encode(TempData["msg"]));
+            alert(msg);
+        </script>
+    }
+}
+
+        <link href="~/Content/font.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="container NEWrounded-top" style="  ">
+        <br />
+        <div class="card bg-light NEWrounded-all">
+            <div class="card-header mt5">
+                <h4 class="Myfont">@semail 會員資料管理</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group " style="">
+                            <h5>@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "tf" })</h5>
+                            <h6 class="tb">@Name</h6>
+                        </div>
+                        <div class="form-group" style="">
+                            <h5>@Html.LabelFor(model => model.Pwd, htmlAttributes: new { @class = "tf" })</h5>
+                            <label id="showeditpwd" class="btn btn-o " style="cursor:pointer" data-target="#EditPwd" data-toggle="modal">修改密碼</label>
+                        </div>
+                        <div class="form-group" style="">
+                            <h5>@Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "tf" })</h5>
+                            <h6  class="tb">@(Birthday.ToString("yyyy/MM/dd"))</h6>
+                        </div>
+                        <div class="form-group" style="">
+                            <h5>@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "tf" })</h5>
+                            @{ var gender = "";
+                                if (Model.Gender == true)
+                                {
+                                    gender = "男";
+                                }
+                                else
+                                {
+                                    gender = "女";
+                                }
+                            }
+                            <h6  class="tb">@gender</h6>
+                        </div>
+                        <div class="form-group">
+                            <h5>@Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "tf" })</h5>
+                            <h6  class="tb">@Phone</h6>
+                        </div>
+                        <div class="form-group">
+                            <h5>@Html.LabelFor(model => model.City_list.City_name, htmlAttributes: new { @class = "tf" })</h5>
+                            <h6  class="tb">@City</h6>
+                        </div>
+                        <div class="form-group">
+                            <p>@Html.ActionLink("編輯會員資料", "MemberEdit", new { area = "" }, new { @class = "btn btn-o " })</p>
+                        </div>
+
+
+
+
+                    </div>
+                  
+
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <h5>@Html.LabelFor(model => model.Mem_photo, htmlAttributes: new { @class = "" })</h5>
+                            <img src="~/images/memberimg/@Model.Mem_photo" class="NEWrounded-all" style="width:90%;height:90%" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+@*修改密碼表格*@
+<div class="col-12 modal fade" id="EditPwd" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content bg-light">
+            <div class="modal-header">
+                <h2 class="">密碼變更</h2>
+                <a class="close" data-dismiss="modal">×</a>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="@Url.Action("EditPwd")" enctype="multipart/form-data">
+                    <div>
+                        <label class="">輸入原密碼 :</label>
+                        <input id="oldpwd" name="oldpwd" type="password" required class="form-control txtbox" />
+                    </div>
+                    <div>
+                        <label class="">輸入新密碼 :</label>
+                        <input id="newpwd" name="newpwd" type="password" required class="form-control txtbox" />
+                    </div>
+                    <div>
+                        <label class="">在輸入一次 :</label>
+                        <input id="newpwd2" name="newpwd2" type="password" required class="form-control txtbox" />
+                        <span id="newpwd2info" name="newpwd2info" style="color:red" class="text-danger"></span>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">送出</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        function chickpwd(state) {
+            if (state) {
+                $('#newpwd2info').text("OK!");
+            }
+            else {
+                $('#newpwd2info').text("請輸入相同密碼");
+            }
+        }
+        $('#newpwd2').keyup(function () {
+            if (($('#newpwd').val()) == ($('#newpwd2').val())) {
+                chickpwd(true);
+            } else {
+                chickpwd(false);
+            }
+        })
+        $('#newpwd').keyup(function () {
+            if (($('#newpwd').val()) == ($('#newpwd2').val())) {
+                chickpwd(true);
+            } else {
+                chickpwd(false);
+            }
+        })
+    </script>
+}

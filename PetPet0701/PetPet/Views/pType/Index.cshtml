@@ -1,0 +1,55 @@
+﻿@model IEnumerable<PetPet.Models.PetType>
+
+@{
+    ViewBag.Title = "寵物類別清單";
+    Layout = "~/Views/Shared/_LayoutFunction.cshtml";
+}
+
+<h2 class="alert-info">寵物類別清單</h2>
+
+
+<p>
+    @Html.ActionLink("新增寵物類別", "Create", "", new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PetType_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetType_name)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetType_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetType_name)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.PetType_no }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.PetType_no }, new { @class = "btn btn-danger", onclick = "return confirm('確定刪除?')" })
+            </td>
+
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("返回寵物系統管理", "Index", "PetVariety")
+</div>
+
+
+@if (TempData["message"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        alert(message);
+    </script>
+}

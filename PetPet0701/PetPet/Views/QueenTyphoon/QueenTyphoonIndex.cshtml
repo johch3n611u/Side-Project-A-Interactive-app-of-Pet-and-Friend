@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "PetPet後台管理系統";
+
+}
+
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="text-align: center" href="~/QueenTyphoon/QueenTyphoonIndex" title="PetPetMGT">PetPet後台管理系統</a>
+
+    <ul class="navbar-nav px-3 text-danger"><li class="nav-item text-center"><strong style="font-size:2ex">@Session["WelCome"]</strong> <span id="Check_Txt"> - 您的在線時間為：<span id="Check_i">0小時0分0秒</span></span></li></ul>
+
+    <div class="navbar-nav px-3 " style="padding:2px">
+
+        @if (Convert.ToInt32(Session["Admin"]) == 1)
+        {@Html.ActionLink("管理員清單", "Index", "Admin", new { id = Session["Admin"] }, new { @class = "", @target = "petpetMGT" })}
+        @Html.ActionLink("更改密碼", "Edit", "Admin", new { id = Session["Admin"] }, new { @class = "", @target = "petpetMGT" })
+        @Html.ActionLink("登 出", "QueenTyphoonLogout", new { }, new { @class = "" })
+
+    </div>
+
+</nav>
+
+<nav class="row">
+
+    <div style="height: 3em" class="navbar-brand col-md-12 ml-sm-auto col-sm-auto col-md-auto mr-0"></div>
+
+    <a id="petMGT" style="color: white" href="~/ReportViews/Index" target="petpetMGT" class="navbar-brand col-md-3 col-sm-3  mr-0 centerword btn-outline-secondary" onload="init();">
+        <label for="petMGT"> 違規檢舉管理 </label>
+    </a>
+
+    <a id="petMGT2" style="color: white" href="~/News/Index" target="petpetMGT" class="navbar-brand col-md-3 col-sm-3 mr-0 centerword btn-outline-secondary">
+        <label for="petMGT2">最新消息管理 </label>
+    </a>
+
+    <a id="petMGT3" style="color: white" href="~/PetVariety/Index" target="petpetMGT" class="navbar-brand col-md-3 col-sm-3  mr-0 centerword btn-outline-secondary">
+        <label for="petMGT3">寵物系統管理</label>
+    </a>
+
+    <a id="petMGT4" style="color: white" href="~/BgStatisticalAnalysis/Index" target="petpetMGT" class="navbar-brand col-md-3 col-sm-3 col-md-2 mr-0 centerword btn-outline-secondary">
+        <label for="petMGT4">系統數據統計</label>
+    </a>
+</nav>
+
+<main role="main" class="  px-4" style="background-color: rgb(216, 212, 208) ; padding:  0.1em">
+
+    @*<iframe autofocus="" name="petpetMGT" class="page my-4 w-100 chartjs-render-monitor" id="myChart" width="1600" height="900" style="display: block; width: 1580px; height: 741px;" src="~/BgStatisticalAnalysis/Index"></iframe>*@
+    <iframe autofocus="" name="petpetMGT" class="page my-4 w-100 chartjs-render-monitor" id="myChart" width="1514" height="2500" style="display: block; width: 1514px; height: 1500px;" src="~/QueenTyphoonContent/content/管理員操作頁面說明2.html"></iframe>
+
+    <footer class=" mt-2 mb-2 text-muted workpractice centerword">
+        @*<p>PetPet_WORKPRACTICE</p>
+            <p>&copy; @DateTime.Now.Year FROMBOOSTRAPSAMPLE</p>*@
+        <p>&copy; @DateTime.Now.Year - PetPet寵物社群平台</p>
+    </footer>
+</main>
+<script src="~/QueenTyphoonContent/libraries/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+<script>
+    window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
+</script>
+<script src="~/QueenTyphoonContent/libraries/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+
+<div id="rememberry__extension__root" style="all: unset;"></div>
+<script type="text/javascript">
+
+    //onload = "init();
+
+    //window.onload = function init() {
+
+    //    var MouseX = event.pageX;
+    //    var MouseY = event.pageY;
+    //    console.log(MouseX);
+    //    console.log(MouseX);
+
+    //};
+
+    $(document).mousemove(function (e) {
+        var MouseX = event.pageX;
+        var MouseY = event.pageY;
+        console.log(MouseX);
+        console.log(MouseX);
+    });
+
+
+    var SetMinute = 0;
+    function Check_Time() {
+        SetMinute += 1;
+        var Check_i = document.getElementById("Check_i");
+
+        var Cal_Hour = Math.floor(SetMinute / 3600);
+        var Cal_Minute = Math.floor(Math.floor(SetMinute % 3600) / 60);
+        var Cal_Second = SetMinute % 60;
+
+        Check_i.innerHTML = Cal_Hour + "小時" + Cal_Minute + "分" + Cal_Second + "秒";
+
+        if (Cal_Hour == 1) {
+
+            alert("您的視窗閒置過久，考量資訊安全因素將導回登入頁面...(Demo時間設定為每小時彈出視窗，但正確刪除session為二十分鐘。)")
+
+        };
+    }
+    var mm = window.setInterval("Check_Time()", 1000);
+
+</script>

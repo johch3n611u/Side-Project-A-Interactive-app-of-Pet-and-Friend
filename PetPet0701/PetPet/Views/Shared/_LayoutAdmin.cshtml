@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style class="darkreader darkreader--fallback" media="screen"></style>
+    <style class="darkreader darkreader--text" media="screen"></style>
+    <style class="darkreader darkreader--invert" media="screen"></style>
+    <style class="darkreader darkreader--inline" media="screen">
+        [data-darkreader-inline-bgcolor] {
+            background-color: var(--darkreader-inline-bgcolor) !important;
+        }
+
+        [data-darkreader-inline-bgimage] {
+            background-image: var(--darkreader-inline-bgimage) !important;
+        }
+
+        [data-darkreader-inline-border] {
+            border-color: var(--darkreader-inline-border) !important;
+        }
+
+        [data-darkreader-inline-border-bottom] {
+            border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+        }
+
+        [data-darkreader-inline-border-left] {
+            border-left-color: var(--darkreader-inline-border-left) !important;
+        }
+
+        [data-darkreader-inline-border-right] {
+            border-right-color: var(--darkreader-inline-border-right) !important;
+        }
+
+        [data-darkreader-inline-border-top] {
+            border-top-color: var(--darkreader-inline-border-top) !important;
+        }
+
+        [data-darkreader-inline-boxshadow] {
+            box-shadow: var(--darkreader-inline-boxshadow) !important;
+        }
+
+        [data-darkreader-inline-color] {
+            color: var(--darkreader-inline-color) !important;
+        }
+
+        [data-darkreader-inline-fill] {
+            fill: var(--darkreader-inline-fill) !important;
+        }
+
+        [data-darkreader-inline-stroke] {
+            stroke: var(--darkreader-inline-stroke) !important;
+        }
+
+        [data-darkreader-inline-outline] {
+            outline-color: var(--darkreader-inline-outline) !important;
+        }
+    </style>
+    <style class="darkreader darkreader--user-agent" media="screen">
+        html {
+            background-color: #eae7e1 !important;
+        }
+
+        html,
+        body,
+        input,
+        textarea,
+        select,
+        button {
+            background-color: #eae7e1;
+        }
+
+        html,
+        body,
+        input,
+        textarea,
+        select,
+        button {
+            border-color: #424547;
+            color: #000000;
+        }
+
+        a {
+            color: #003ae6;
+        }
+
+        table {
+            border-color: #767470;
+        }
+
+        ::placeholder {
+            color: #9f9b91;
+        }
+
+        ::selection {
+            background-color: #0056bf;
+            color: #eae7e1;
+        }
+
+        ::-moz-selection {
+            background-color: #0056bf;
+            color: #eae7e1;
+        }
+
+        input:-webkit-autofill,
+        textarea:-webkit-autofill,
+        select:-webkit-autofill {
+            background-color: #cfcac1 !important;
+            color: #000000 !important;
+        }
+
+        ::-webkit-scrollbar {
+            background-color: #dedbd3;
+            color: #565757;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #b5b0a6;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background-color: #9c988e;
+            }
+
+            ::-webkit-scrollbar-thumb:active {
+                background-color: #565757;
+            }
+
+        ::-webkit-scrollbar-corner {
+            background-color: #eae7e1;
+        }
+
+        * {
+            scrollbar-color: #b5b0a6 #dedbd3;
+        }
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>PetPetMGTpage</title>
+    <link rel="icon" href="~/QueenTyphoonContent/libraries/sample.png" type="image/png" />
+    <link rel="shortcut icon" href="~/QueenTyphoonContent/libraries/sample.png" type="image/png" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/QueenTyphoonContent/libraries/bootstrap.min.css" rel="stylesheet">
+    <style class="darkreader darkreader--sync" media="screen"></style>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+    <style class="darkreader darkreader--sync" media="screen"></style>
+    <!-- Custom styles for this template -->
+    <link href="~/QueenTyphoonContent/libraries/dashboard.css" rel="stylesheet">
+
+
+
+    <style class="darkreader darkreader--sync" media="screen"></style>
+    <style class="darkreader darkreader--override" media="screen">
+        .jfk-bubble {
+            background-color: #ffffff !important;
+        }
+
+        .vimvixen-hint {
+            background-color: #ffd76e !important;
+            border-color: #c59d00 !important;
+            color: #302505 !important;
+        }
+    </style>
+    <style type="text/css">
+        /* Chart.js */
+
+
+
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+    <style class="darkreader darkreader--sync" media="screen"></style>
+    <style class="darkreader darkreader--sync" media="screen"></style>
+    <style>
+        .centerword {
+            text-align: center
+        }
+    </style>
+
+</head>
+<body>
+
+    <a href="#">@Session["WelCome"]</a>
+
+    <div>
+        @RenderBody()
+    </div>
+
+</body>
+</html>

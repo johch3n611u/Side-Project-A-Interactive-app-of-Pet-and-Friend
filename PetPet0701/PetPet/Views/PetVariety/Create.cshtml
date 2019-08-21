@@ -1,0 +1,54 @@
+﻿@model IEnumerable<PetPet.Models.PetType>
+
+@{
+    ViewBag.Title = "新增寵物品種";
+    Layout = "~/Views/Shared/_LayoutFunction.cshtml";
+}
+
+
+<h2 class="alert-info">新增寵物品種</h2>
+
+
+<form method="post" action="@Url.Action("Create")">
+    <div class="form-horizontal">
+        @*<div class="form-group">
+                <label class="col-md-2 control-label" for="Variety_no">品種編號</label>
+                <div class="col-md-10">
+                    <input id="Variety_no" name="Variety_no" type="text" class="form-control" />
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="Variety_name">品種名稱</label>
+            <div class="col-md-10">
+                <input id="Variety_name" name="Variety_name" type="text" class="form-control" required="required" />
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="PetType_no">寵物類別</label>
+            <div class="col-md-10">
+                <select id="PetType_no" name="PetType_no" class="form-control">
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item.PetType_no">@item.PetType_name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <input id="Submit1" type="submit" value="新增" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    @Html.ActionLink("返回寵物品種清單", "Index")
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

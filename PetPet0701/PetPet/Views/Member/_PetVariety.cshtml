@@ -1,0 +1,19 @@
+﻿@model PetPet.Models.PetVariety
+
+<div class="form-group">
+    @Html.LabelFor(model => model.PetVariety_no, "寵物品種", htmlAttributes: new { @class = "control-label col-md-2 tf" })
+    <div class="col-md-10">
+        @*<input class="form-control" value="1">*@
+        <select id="Variety_no" name="Variety_no" class="form-control-sm txtbox">
+            @{
+                foreach (var petv in ViewBag.ptn)
+                {
+                    <option name="@petv.PetType_no" value="@petv.PetVariety_no">@petv.Variety_name</option>
+                }
+            }
+
+        </select>
+        @*@Html.DropDownList("Variety_no", null, htmlAttributes: new { @class = "form-control" })*@
+        @Html.ValidationMessageFor(model => model.PetVariety_no, "", new { @class = "text-danger" })
+    </div>
+</div>

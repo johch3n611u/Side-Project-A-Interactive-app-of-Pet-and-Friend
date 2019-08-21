@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    //string fAuth = Session["Number"].ToString();
+    if (TempData["msg"] != null)
+    {
+        <script type="text/javascript">
+            var msg = @Html.Raw(Json.Encode(TempData["msg"]));
+            alert(msg);
+        </script>
+    }
+}
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+<link href="~/Content/login.css" rel="stylesheet" />
+<body>
+    <div class="row justify-content-center pt-3">
+        @*<div class="col-sm-1 col-md-4 col-lg-5"></div>*@
+        <div class="col-sm-10 col-md-6 col-lg-4">
+            <div class="p-2 m-3">
+                @*<img src="~/images/Logo.png" alt="" class="w-100 ">*@
+                <img src="~/images/Dog/DOG2.svg" alt="" class="w-100 ">
+            </div>
+            <div class="cardl textb bgw badge-light">
+                <form method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="card-body">
+                        <h3 class="text-center tfont mb-4 mt-1">Sign  Up</h3>
+
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+
+                            <div class="input-group mb-3 w-75">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text fas" id="basic-addon1">&#xf007;</span>
+                                </div>
+                                <input type="email" id="fEmail" name="fEmail" class="form-control txtbox" placeholder="Enter email..." required autofocus value="c501@gmail.com">
+                            </div>
+                            <div class="input-group mb-3 w-75">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text fas" id="basic-addon1">&#xf084;</span>
+                                </div>
+                                <input type="password" id="fPwd" name="fPwd" class="form-control txtbox" placeholder="Password" required value="123456">
+                            </div>
+
+                            <div class="input-group mb-3 w-75">
+                                <div class="input-group-prepend">
+                                    <img src="~/GetAuthImg.ashx" style="height:95%;" class="" />
+                                </div>
+                                <input type="text" id="fAuth" name="fAuth" class="form-control txtbox" placeholder="輸入驗證碼" required value="">
+                            </div>
+                            @*<button class="btn btn-link offset-8" style="font-size:0.8em" type="submit">忘記密碼</button>*@
+                            @Html.ActionLink("忘記密碼", "forgetpassword", "Login", new { area = "" }, new { @class = "btn btn-link offset-8" })
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <div class="d-flex flex-column justify-content-center align-items-center ">
+
+                            <div class="text-center">
+                                <span style="color:red">@ViewBag.Msg</span>
+                            </div>
+
+                            <button class="btn btn-large btn-o col-10 btn-block" type="submit">登入</button>
+
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <p class="Myfont text-black">
+                                    還不是會員嗎?@Html.ActionLink("立刻註冊新帳號", "MemberCreate", "REG", new { area = "" }, new { @class = "btn btn-link Myfont" })
+                                </p>
+                            </div>
+
+                        </div>
+                    </footer>
+                </form>
+            </div>
+        </div>
+        @*<div class="col-sm-1 col-md-4 col-lg-4"></div>*@
+    </div>
+</body>
+
+

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="auto" class="">
+
+<!-- https://www.chartjs.org/samples/latest/ -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/bootstrap.css" rel="stylesheet">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="./Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/dashboard.css" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+        
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+        
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+        
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="./Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/translateelement.css">
+</head>
+
+<body>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>統計分析</span>
+
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#測試測試1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>                                文章數量
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#測試測試2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>                                會員生日
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#測試測試3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>                                違規項目
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#測試測試4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>                                寵物數量
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div style="padding:20px 20px 200px 20px;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h2 class="h2" id="測試測試1">文章數量</h2>
+                    </div>
+                    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="1061" height="447" style="display: block; width: 1061px; height: 447px;"></canvas>
+                </div>
+
+                <div style="padding:20px 20px 200px 20px;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h2 class="h2" id="測試測試2">會員生日</h2>
+                    </div>
+                    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart2" width="1061" height="447" style="display: block; width: 1061px; height: 447px;"></canvas>
+                </div>
+
+                <div style="padding:20px 20px 200px 20px;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h2 class="h2" id="測試測試3">違規項目</h2>
+                    </div>
+                    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart3" width="1061" height="447" style="display: block; width: 1061px; height: 447px;"></canvas>
+                </div>
+
+                <div style="padding:20px 20px 200px 20px;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h2 class="h2" id="測試測試4">寵物數量</h2>
+                    </div>
+                    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart4" width="1061" height="447" style="display: block; width: 1061px; height: 447px;"></canvas>
+                </div>
+            </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- 以下不能刪 -->
+            <script src="./Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/jquery-3.3.1.slim.min.js.下載" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script>
+                window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')
+            </script>
+            <script src="./Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/bootstrap.bundle.js.下載"></script>
+            <script src="./Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/feather.min.js.下載"></script>
+            <script src="./Dashboard Template · Bootstrap 4 繁體中文手冊 [六角學院譯]_files/Chart.min.js.下載"></script>
+
+            <!-- inline是因為新東西 這樣改比較容易  -->
+            <script>
+                /* globals Chart:false, feather:false */
+
+                (function() {
+                    'use strict'
+
+                    feather.replace()
+
+                    // Graphs
+                    var ctx = document.getElementById('myChart')
+                        // eslint-disable-next-line no-unused-vars
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: [
+                                '第一季',
+                                '第二季',
+                                '第三季',
+                                '第四季',
+
+                            ],
+                            datasets: [{
+                                data: [
+                                    50,
+                                    60,
+                                    103,
+                                    20,
+
+                                ],
+                                lineTension: 0,
+                                backgroundColor: 'transparent',
+                                borderColor: '#007bff',
+                                borderWidth: 4,
+                                pointBackgroundColor: '#007bff'
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: false
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: false
+                            }
+                        }
+                    })
+                }())
+            </script>
+
+            <script>
+                /* globals Chart:false, feather:false */
+
+                (function() {
+                    'use strict'
+
+                    feather.replace()
+
+                    // Graphs
+                    var ctx = document.getElementById('myChart2')
+                        // eslint-disable-next-line no-unused-vars
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: [
+                                '春',
+                                '夏',
+                                '秋',
+                                '冬',
+
+                            ],
+                            datasets: [{
+                                data: [
+                                    55,
+                                    60,
+                                    103,
+                                    70,
+
+                                ],
+                                lineTension: 0,
+                                backgroundColor: 'rgba(102,186,183,0.8)',
+                                label: '男',
+                                borderColor: '#007bff',
+                                borderWidth: 1,
+                                pointBackgroundColor: '#007bff'
+                            }, {
+                                data: [
+                                    73,
+                                    77,
+                                    63,
+                                    20,
+
+                                ],
+                                lineTension: 0,
+                                backgroundColor: 'rgba(245,150,170,0.8)',
+                                label: '女',
+                                borderColor: 'rgba(208,16,76,0.8)',
+                                borderWidth: 1,
+                                pointBackgroundColor: 'rgba(208,16,76,0.8)'
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: true
+                            }
+                        }
+                    })
+                }())
+            </script>
+
+            <script>
+                /* globals Chart:false, feather:false */
+
+                (function() {
+                    'use strict'
+
+                    feather.replace()
+
+                    // Graphs
+                    var ctx = document.getElementById('myChart3')
+                        // eslint-disable-next-line no-unused-vars
+                    var myChart = new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: [
+                                '非寵物相關',
+                                '洗腦',
+                                '虐待動物',
+                                '裸露',
+                                '暴力',
+                                '騷擾',
+                                '自殺或自殘',
+                                '不實報導',
+                                '垃圾訊息',
+                                '販售違禁品',
+                                '仇恨言論',
+                                '恐怖主義',
+
+                            ],
+                            datasets: [{
+                                data: [
+                                    80,
+                                    90,
+                                    103,
+                                    70,
+                                    80,
+                                    90,
+                                    103,
+                                    20,
+                                    30,
+                                    70,
+                                    103,
+                                    103,
+
+                                ],
+                                lineTension: 0,
+                                backgroundColor: 'rgba(255,196,8,0.4)',
+                                borderColor: 'rgb(255,196,8)',
+                                borderWidth: 2,
+                                pointBackgroundColor: 'rgb(255,196,8)'
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: false
+                            }
+                        }
+                    })
+                }())
+            </script>
+
+            <script>
+                /* globals Chart:false, feather:false */
+
+                (function() {
+                    'use strict'
+
+                    feather.replace()
+
+                    // Graphs
+                    var ctx = document.getElementById('myChart4')
+                        // eslint-disable-next-line no-unused-vars
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: [
+                                '狗',
+                                '貓',
+                                '烏龜',
+                                '鳥',
+
+                            ],
+                            datasets: [{
+                                data: [
+                                    50,
+                                    60,
+                                    103,
+                                    20,
+
+                                ],
+                                lineTension: 0,
+                                backgroundColor: 'rgba(,,,)',
+                                borderColor: '#FFFFFF',
+                                borderWidth: 4,
+                                pointBackgroundColor: 'rgba(,,,)'
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: false
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: true
+                            }
+                        }
+                    })
+                }())
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

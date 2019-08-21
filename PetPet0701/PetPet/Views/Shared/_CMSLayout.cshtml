@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/petpet_style.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/petpet.ico">
+    @{
+        var semail = "";
+        var wsmail = "管理員請登入";
+        var aaa = "";
+        var bbb = "";
+        var ccc = "  ";
+
+        //if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+        //{
+        //    semail = "";
+        //    wsmail = "訪客請登入";
+        //    aaa = "LoidnIndex";
+        //    bbb = "Singin";
+        //    ccc = " ";
+        //}
+        //else
+        //{
+        //    semail = Session["semail"].ToString();
+        //    wsmail = semail + "歡迎回來";
+        //    aaa = "MemData";
+        //    bbb = "Member";
+        //    ccc = "登出";
+        //}
+    }
+</head>
+<body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container">
+            @Html.ActionLink("PetPet", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="navbar-brand">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">@Html.ActionLink("首頁", "Index", "Home", new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("關於PetPet", "About", "Home", new { @class = "nav-link" })</li>
+                    @*<li class="nav-item">@Html.ActionLink("連絡人", "Contact", "Home", new { @class = "nav-link" })</li>*@
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@wsmail</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">會員中心</a>
+                            <a class="dropdown-item" href="#">我的寵物</a>
+                            <a class="dropdown-item" href="#">配對</a>
+                            <a class="dropdown-item" href="#">登出</a>
+                            @*@Html.ActionLink("會員中心", "MatchIndex", "Match", new { area = "" }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("我的寵物", "AboutMe", "AboutMe", new { area = "" }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("配對", "AboutMe", "AboutMe", new { area = "" }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("登出", "Logout", "Singout", new { @logout = "1" }, new { @class = "dropdown-item" })*@
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer class="text-center">
+            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
+        </footer>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<PetPet.Models.Violation_type>
+
+@{
+    ViewBag.Title = "違規類別清單";
+    Layout = "~/Views/Shared/_LayoutFunction.cshtml";
+}
+
+<h2 class="alert-info">違規類別清單</h2>
+
+
+@Html.ActionLink("新增違規類別", "Create", "", new { @class = "btn btn-success" })
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VType_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VType_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Freeze_day)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VType_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VType_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Freeze_day)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.VType_no }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.VType_no }, new { @class = "btn btn-danger", onclick = "return confirm('確定刪除?')" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (TempData["message"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        alert(message);
+    </script>
+}

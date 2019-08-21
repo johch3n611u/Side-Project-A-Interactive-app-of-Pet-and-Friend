@@ -1,0 +1,106 @@
+﻿@model PetPet.Models.News
+
+@{
+    ViewBag.Title = "修改最新消息";
+    Layout = "~/Views/Shared/_LayoutFunction.cshtml";
+}
+
+<h2 class="alert-info">修改最新消息</h2>
+
+
+@*@using (Html.BeginForm())
+    {*@
+
+<form method="post" action="@Url.Action("Edit")" enctype="multipart/form-data">
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>News</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.News_no)
+        @Html.HiddenFor(model => model.Admin_no)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.N_tital, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.N_tital, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.N_tital, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.N_content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.N_content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.N_content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.N_photo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.fImg, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fImg, "", new { @class = "text-danger" })*@
+
+
+                <input id="oldImg" name="oldImg" type="hidden" value="@Model.N_photo" />
+
+                @{
+                    string y = "/NewsImages/" + Model.N_photo.ToString();
+                    string strclass = "";
+                    string stralt = "";
+                    if (Model.N_photo == "")
+                    {
+                        y = "";
+                        strclass = "d-none";
+                        stralt = "沒有上傳圖片";
+                    }
+                    <img src="@y" class='@strclass' width="200" />
+                    <lable>@stralt</lable>
+                }
+
+                @*<img src="~/NewsImages/@Model.N_photo" width="200" />*@
+                <input id="N_photo" name="N_photo" type="file" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.N_post_time, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*<input id="N_post_time" name="N_post_time" type="date" class="form-control" value="@ViewBag.DateS" />*@
+                @Html.EditorFor(model => model.N_post_time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.N_post_time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.N_post_deadline, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*<input id="N_post_deadline" name="N_post_deadline" type="date" class="form-control" value="@ViewBag.DateE" />*@
+                @Html.EditorFor(model => model.N_post_deadline, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.N_post_deadline, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="修改" class="btn btn-warning" />
+                @ViewBag.Error
+            </div>
+        </div>
+    </div>
+    @*}*@
+</form>
+<div>
+    @Html.ActionLink("返回最新消息清單", "Index")
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $('#Admin_no').val('@ViewBag.Admin_no')
+    $('#N_post_time').val('@ViewBag.DateS')
+    $('#N_post_deadline').val('@ViewBag.DateE')
+
+</script>

@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "首頁";
+
+    var semail = "";
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Login/Login");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+        Response.Redirect("~/Post/PostIndex");
+    }
+}
+
+<h2>歡迎回到PetPet</h2>
+@section Scripts {
+    <script>
+
+    </script>
+}

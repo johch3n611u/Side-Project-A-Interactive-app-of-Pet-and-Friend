@@ -1,0 +1,269 @@
+﻿@model IEnumerable<PetPet.Models.Post>
+@{
+    ViewBag.Title = "點點滴滴";
+    var semail = "";
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Login/Login");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+    }
+}
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+
+<div class="row">
+    <div class="container NEWrounded-top mt-4" style=" background-color:white;">
+        <br />
+        <div class="d-flex justify-content-center m-2">
+            <label id="showpost" class="btn btn-o btn-lg " style="cursor:pointer" data-target="#InsForm" data-toggle="modal">發新文章</label>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-columns">
+                        @{
+                            var ShowPost = Model.Where(s => s.Post_Enable == true).Reverse().ToList();
+                            foreach (var item in ShowPost)
+                            {
+                                string imgsrc = (@Html.DisplayFor(modelItem => item.Post_img)).ToString();
+                                string imgsrc2 = "";
+                                if (item.Post_Email == semail)
+                                {
+                                    imgsrc2 = item.Member.Mem_photo;
+                                }
+                                else
+                                {
+                                    if (item.Member.Gender == false)
+                                    {
+                                        imgsrc2 = "girl.png";
+                                    }
+                                    else
+                                    {
+                                        imgsrc2 = "boy.png";
+                                    }
+                                    foreach (var friend in ViewBag.Friend)
+                                    {
+                                        if (friend.F_Email == item.Post_Email && friend.Add_ststus == true)
+                                        {
+                                            imgsrc2 = (@Html.DisplayFor(modelItem => item.Member.Mem_photo)).ToString();
+                                        }
+                                    }
+                                }
+                                <div class="card mt-2">
+                                    
+                                     <a href="@Url.Action("DetailPost", new { @name = item.Post_no })">
+                                        @*@for (int i = 0; i < Model.Where(m => m.Post_no == item.Post_no).Count(); i++)
+                                    {
+                                        var x = Model.Where(m => m.Post_no == item.Post_no).First().Post_img.First().Post_photo;
+                                        <img src="~/images/postimg/@x" style="width:95%;" class="img-thumbnail" />
+                                    }*@
+                                        @{
+                                            var x = Model.Where(m => m.Post_no == item.Post_no).First().Post_img.First().Post_photo;
+                                        }
+                                        <img src="~/images/postimg/@x" style="width:100%;" class="  card-img-top" />
+                                    </a>
+                                    <div class="card-body">
+                                        <div class="container">
+                                            <div class="row  ">
+                                                <h5 class="card-title " style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;letter-spacing:2px;color:#5a3c3d">@item.Post_title</h5>
+                                             
+                                            </div>
+                                           
+                                        </div>
+                                        <p class="card-text" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;letter-spacing:2px">@item.Post_content</p>
+                                        <p class="card-text"><small class="text-muted" style="letter-spacing:2px">@item.Post_time</small></p>
+                                    </div>
+                                    <div class="card-foot  bg-transparent">
+                                        @*<form method="post" action="@Url.Action("Like",new { id=item.Post_no,semail})">
+            <button id="Like" type="submit" class="btn btn-link">
+                @{
+                    int likes = 0;
+                    foreach (var data in ViewBag.Like)
+                    {
+                        if (data.Post_no == item.Post_no)
+                        {
+                            likes++;
+                        }
+                    }
+                }
+                <span class='fas fa-heart' style='font-size:1.4rem;color:palevioletred'>@likes</span>
+            </button>
+        </form>*@
+
+                                        @*改用PartialView*@
+
+                                        <div class="m-2">
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <img src="~/images/memberimg/@imgsrc2" style="display: inline-block;width:40px;height:40px" class="rounded-circle" />
+                                                    <label class="Myfont">@item.Member.Name</label>
+                                                </div>
+                                           
+                                                <div class="  " style="display: inline-block ">
+                                                    @Html.Action("_Like", "Like", new { PostId = item.Post_no })
+                                                </div>
+
+                                                <span class="dropdown show" style="display: inline-block;float:right">
+                                                    @*檢舉*@
+                                                    <a class="btn btn-link fa text-black-50" href="#" role="button" id="dropdownMenuLink"
+                                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#xf142;</a>
+
+                                                    <span class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                        <button class="dropdown-item" data-target="#ReportModal" data-toggle="modal" onclick="$('#ReportPostId').val(@item.Post_no)">
+                                                            檢舉貼文
+                                                        </button>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                           
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+         
+
+
+
+
+
+
+
+    </div>
+</div>
+@*檢舉表格*@
+<div class="col-12 modal fade" id="ReportModal" role="dialog">
+    <form action="@Url.Action("ReportPost")" method="post">
+        <div class="modal-dialog">
+            <div class="modal-content bg-light">
+                <div class="modal-header">
+                    <h2 class="modal-title Myfont">檢舉事項</h2>
+                    <a class="close" data-dismiss="modal">×</a>
+                </div>
+
+                <div class="modal-body form-group">
+                    <input id="ReportPostId" name="ReportPostId" type="text" value="" class="" hidden />
+                    @{
+                        <span class="form-check-inline">
+                            <input id="Radio1" name="ReportItem" value="@ViewBag.FristR.VType_no" type="radio" class="form-check" checked /> @ViewBag.FristR.VType_name
+                        </span>
+                        <br />
+                        foreach (var report in ViewBag.Report)
+                        {
+                            <span class="form-check-inline">
+                                <input id="ReportItem" name="ReportItem" value="@report.VType_no" type="radio" class="form-check" />@report.VType_name
+                            </span><br />
+                        }
+                    }
+                    <div class="text-right">
+                        @*@Html.ActionLink("送出", "ReportPost", "Post", new { us=semail },
+                            new { @class = "btn btn-primary" })*@
+                        <button type="submit" class="btn btn-primary">送出</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+@*下面是發文的表格*@
+<div class="modal fade" id="InsForm" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-light">
+            <div class="modal-header">
+                <h2 class="modal-title Myfont">分享您與寵寵的點點滴滴</h2>
+                <a class="close" data-dismiss="modal" style="cursor:pointer">×</a>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="@Url.Action("PostIndex")" enctype="multipart/form-data">
+                    <input id="Email" name="Email" type="text" value="@semail" hidden />
+                    <div class="form-group">
+
+                        <label class="">標題 :</label>
+                        <input id="Post_title" autofocus name="Post_title" type="text" class="form-control mw-100 txtbox" required />
+                    </div>
+                    <div class="form-group">
+                        <label>內容 :</label>
+                        <textarea id="Post_content" name="Post_content" rows="3" class="form-control form-control-lg mw-100 txtbox" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        @*<label>照片 :</label>*@
+                        <label class="">
+                            <input id="Post_photo" name="Post_photo" class="d-none" type="file" multiple="multiple" required>
+                            <img src="~/images/camera.png" style="width:3em;cursor:pointer" />
+                        </label>
+                        @*<input type="file" name="Post_photo" id="Post_photo" multiple="multiple" required class="form-control-file" />*@
+                    </div>
+                    <div id="ViewImg" class="mw-100" overflow:hidden;">
+                        <p>目前沒有圖片ㄛ~</p>
+                    </div>
+
+                    <br />
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">送出</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["msg"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["msg"]));
+        alert(message);
+    </script>
+}
+
+
+@if (TempData["Rmsg"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["Rmsg"]));
+        alert(message);
+    </script>
+}
+
+@section scripts{
+    <script>
+
+        $('#Post_photo').change(function () {
+            $('#ViewImg').html(""); // 清除預覽
+            readURL(this);
+        });
+
+        function readURL(input) {
+            if (input.files && input.files.length > 0) {
+                for (var i = 0; i < input.files.length; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var img = $("<img class='w-25'>").attr('src', e.target.result);
+                        $('#ViewImg').append(img);
+                    }
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+            else {
+                var noPhoto = $("<p>目前沒有圖片ㄛ~</p>");
+                $('#ViewImg').append(noPhoto);
+            }
+        }
+
+    </script>
+}

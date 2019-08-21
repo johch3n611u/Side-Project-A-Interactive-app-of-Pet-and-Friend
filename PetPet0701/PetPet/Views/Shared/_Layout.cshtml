@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetPet - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/petpet_style.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/petpet.ico">
+    @*<link rel="shortcut icon" type="image/x-icon" href="~/images/Dog/DOG3.svg">*@
+    @{
+        var semail = "";
+        var wsmail = "訪客請登入";
+        var aaa = "";
+        var bbb = "";
+        var userName = Session["UserName"];
+        var UserPhoto = Session["UserPhoto"];
+        if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+        {
+            semail = "";
+            wsmail = "訪客請登入";
+            aaa = "hidden";
+        }
+        else
+        {
+            semail = Session["semail"].ToString();
+            wsmail = userName + "歡迎回來";
+            bbb = "hidden";
+        }
+    }
+</head>
+<body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-expand-md navbar-l  font fixed-top bg-w">
+        <div class="container">
+            <a href="@Url.Action("Index","Home")">
+                @*<img src="~/images/logo.svg" width="50" />*@
+                <img src="~/images/Dog/DOG3.svg" width="50" />
+            </a>
+            @*@Html.ActionLink("PetPet", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            <div class="navbar-brand">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse  nav-fill" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">@Html.ActionLink("首頁", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("關於PetPet", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @*
+                        <li class="nav-item">@Html.ActionLink("連絡人", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="~/images/memberimg/@UserPhoto" width="28" height="28" class="rounded-circle" @aaa /> <lable class="pl-1">@wsmail</lable>
+                        </a>
+                        @*<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@wsmail</a>*@
+                        <div class="dropdown-menu" aria-labelledby="dropdown01" @aaa>
+                            @*<a class="dropdown-item" href="#">會員中心</a>*@
+                            @Html.ActionLink("會員中心", "MemData", "Member", new { area = "" }, new { @class = "dropdown-item" })
+                            @*<a class="dropdown-item" href="#">我的寵物</a>*@
+                            @Html.ActionLink("我的寵物", "MyPet", "Member", new { area = "" }, new { @class = "dropdown-item" })
+                            @*<a class="dropdown-item" href="#">配對</a>*@
+                            @*<a class="dropdown-item" href="#">登出</a>*@
+
+                            @*@Html.ActionLink("我的寵物", "AboutMe", "AboutMe", new { area = "" }, new { @class = "dropdown-item" })*@
+                            @Html.ActionLink("配對", "MatchIndex", "Match", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("最新消息", "ViewNews", "Home", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("登出", "Logout", "Logout", new { area = "" }, new { @class = "dropdown-item" })
+                        </div>
+                    </li>
+                    <li class="nav-item" @bbb>@Html.ActionLink("登入", "Login", "Login", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0" method="get" action="~/Post/PostIndex">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="Search" id="Search" aria-label="搜尋貼文">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer class="text-center font ">
+            <p>&copy; @DateTime.Now.Year -  PetPet寵物社群平台</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@model PetPet.ViewModel.CVM
+@{
+    ViewBag.Title = "寵物品種清單";
+    Layout = "~/Views/Shared/_LayoutFunction.cshtml";
+}
+<h2 class="alert-info">寵物類別</h2>
+
+
+<p>
+    @Html.ActionLink("寵物類別管理", "Index", "pType", 0, new { @class = " " })
+</p>
+<div class="row">
+    <div class="col-3">
+        @foreach (var item in Model.ptype)
+        {
+            <p>
+                @Html.ActionLink(item.PetType_name, "Index", new { id = item.PetType_no }, new { @class = "btn btn-info" })
+            </p>
+        }
+    </div>
+
+    <div class="col-9">
+        <h2 class="alert-info">寵物品種清單</h2>
+
+
+        @Html.ActionLink("新增寵物品種", "Create", "", new { @class = "btn btn-success" })
+
+        <table class="table">
+            <tr>
+                @*<th>品種編號</th>*@
+                <th>品種名稱</th>
+                <th>寵物類別</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.variety)
+            {
+                <tr>
+                    @*<td>@item.PetVariety_no</td>*@
+                    <td>@item.Variety_name</td>
+                    <td>@item.PetType.PetType_name</td>
+                    @*<td>@item.PetType_no</td>*@
+                    <td>
+                        @Html.ActionLink("修改", "Edit", new { id = item.PetVariety_no }, new { @class = "btn btn-warning" }) |
+                        @Html.ActionLink("刪除", "Delete", new { id = item.PetVariety_no }, new { @class = "btn btn-danger", onclick = "return confirm('確定刪除?')" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+@if (TempData["message"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        alert(message);
+    </script>
+}

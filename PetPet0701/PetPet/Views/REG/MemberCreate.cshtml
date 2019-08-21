@@ -1,0 +1,141 @@
+﻿@model PetPet.Models.Member
+@{
+    ViewBag.Title = "會員註冊";
+    string required = "required";
+}
+
+
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="m-auto">
+            <form method="post" action="@Url.Action("MemberCreate")" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h2>註冊我的PetPet會員</h2>
+                    </div>
+                    <div class="card-body m-auto">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control txtbox", placeholder = "Enter email...", required } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control txtbox", required } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.Pwd, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Pwd, new { htmlAttributes = new { @class = "form-control txtbox", type = "password", placeholder = "Password...", required } })
+                                    @Html.ValidationMessageFor(model => model.Pwd, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    <lable class="control-label">再次輸入密碼</lable>
+                                    <input id="Pwd2" name="Pwd2" type="password" class="form-control txtbox" placeholder="再輸入一次密碼" required />
+                                    <span id="pwd2info" name="pwd2info" style="color:red" class="text-danger"></span>
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label" })
+                                    <select id="Gender" name="Gender" class="form-control txtbox">
+                                        <option value="True">男</option>
+                                        <option value="False">女</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control txtbox", placeholder = "yyyy/mm/dd", required } })
+                                    @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control txtbox", placeholder = "0912345678...", required } })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.City_list.City_name, htmlAttributes: new { @class = "control-label" })
+                                    <select id="City_no" name="City_no" class=" form-control txtbox">
+                                        @{
+                                            foreach (var cityitem in ViewBag.City)
+                                            {
+                                                <option class="Myfont" value="@cityitem.City_no">@cityitem.City_name</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.Mem_photo, htmlAttributes: new { @class = "control-label" })
+                                    <input id="Photo" name="Photo" type="file" class="form-control-file border btn-info" required />
+                                </div>
+                                <div id="imginfo">
+                                    <img id="ViewImg" src="" alt="" class="hide" style="width:100px" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-right">
+                            <input type="submit" value="確定" class="btn btn-primary" />
+                            @Html.ActionLink("取消註冊", "Index", "Home", new { area = "" }, new { @class = "btn btn-primary" })
+                            <span style="color:red">@ViewBag.Error</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+<script>
+    //前端驗證密碼
+    function chickpwd(state) {
+        if (state) {
+            $('#pwd2info').text("OK!");
+        }
+        else {
+            $('#pwd2info').text("請輸入相同密碼");
+        }
+    }
+    $('#Pwd2').keyup(function () {
+        if (($('#Pwd').val()) == ($('#Pwd2').val())) {
+            chickpwd(true);
+        } else {
+            chickpwd(false);
+        }
+    })
+    $('#Pwd').keyup(function () {
+        if (($('#Pwd').val()) == ($('#Pwd2').val())) {
+            chickpwd(true);
+        } else {
+            chickpwd(false);
+        }
+    })
+
+    //會員大頭貼預覽
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#ViewImg').removeClass();
+                $('#ViewImg').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+        else {
+            $('#ViewImg').addClass("hide");
+        }
+    }
+    $("#Photo").change(function () {
+        readURL(this);
+    });
+</script>
+}
+

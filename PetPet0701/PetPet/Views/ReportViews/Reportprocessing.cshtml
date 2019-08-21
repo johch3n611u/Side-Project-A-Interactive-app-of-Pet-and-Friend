@@ -1,0 +1,249 @@
+﻿@model PetPet.ViewModel.ReportViewModel
+@{
+    ViewBag.Title = "檢舉明細";
+    Layout = "~/Views/Shared/_LayoutFunction.cshtml";
+}
+<div style="float:right ">
+    @Html.ActionLink("返回檢舉列表", "Index", new { }, new { @class = "label label-success" })
+</div>
+<nav class="">
+    <p><h2 class="alert-info">檢舉明細</h2><h6 class="text-danger">(鎖定時啟用狀態為unchecked!!!)</h6></p>
+    @*<div class="float-right">
+            <form class="form-inline mt-2 mt-md-0" method="get" action="~/Post/PostIndex">
+                <input class="form-control mr-sm-2" type="text" placeholder="搜尋文章標題" name="Search" id="Search" aria-label="搜尋貼文">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜尋</button>
+            </form>
+        </div>*@
+
+
+
+
+</nav>
+
+<table class="table table-warning">
+    <tr>
+        <th scope="col">
+            會員帳號
+        </th>
+        <th scope="col">
+            暱稱
+        </th>
+        <th scope="col">
+            性別
+        </th>
+        <th scope="col">
+            照片
+        </th>
+        <th scope="col">
+            帳號啟用狀態
+        </th>
+    </tr>
+    @foreach (var item in Model.RMember)
+    {
+        var gender = "";
+        if (item.Gender == true)
+        {
+            gender = "男";
+        }
+        else
+        {
+            gender = "女";
+        }
+
+        <tr>
+            <td> @Html.DisplayFor(modelItem => item.Email)</td>
+            <td> @Html.DisplayFor(modelItem => item.Name)</td>
+            <td> @gender</td>
+            <td><img src="~/images/memberimg/@item.Mem_photo" width="120" /></td>
+            <td> @Html.DisplayFor(modelItem => item.Enable)</td>
+        </tr>
+
+
+        <tr>
+            @Html.ActionLink("鎖定帳號", "Reportreallyprocessing2", new { Email = item.Email, RCommand = 1, Report_no = @ViewBag.Report_no }, new { onclick = "alert('已鎖定帳號!')", @class = "badge badge-danger" })
+            @Html.ActionLink("解除鎖定", "Reportreallyprocessing2", new { Email = item.Email, RCommand = 2, Report_no = @ViewBag.Report_no }, new { onclick = "alert('已解除鎖定!')", @class = "badge badge-danger" })
+        </tr>
+    }
+</table>
+
+<table class="table table-warning">
+    <tr>
+        <th scope="col">
+            上傳時間
+        </th>
+        <th scope="col">
+            文章標題
+        </th>
+        <th scope="col">
+            文章內容
+        </th>
+
+        <th scope="col">
+            文章啟用狀態
+        </th>
+    </tr>
+    @foreach (var item in Model.RPost)
+    {
+        <tr>
+            <td> @Html.DisplayFor(modelItem => item.Post_time)</td>
+            <td> @Html.DisplayFor(modelItem => item.Post_title)</td>
+            <td> @Html.DisplayFor(modelItem => item.Post_content)</td>
+
+            <td> @Html.DisplayFor(modelItem => item.Post_Enable)</td>
+        </tr>
+
+        <tr>
+            @Html.ActionLink("鎖定文章", "Reportreallyprocessing3", new { Post_no = item.Post_no, RCommand = 3, Report_no = @ViewBag.Report_no }, new { onclick = "alert('已鎖定文章!')", @class = "badge badge-danger" })
+            @Html.ActionLink("解除鎖定", "Reportreallyprocessing3", new { Post_no = item.Post_no, RCommand = 4, Report_no = @ViewBag.Report_no }, new { onclick = "alert('已解除鎖定!')", @class = "badge badge-danger" })
+        </tr>
+
+
+
+
+    }
+</table>
+
+<table class="table table-warning">
+    <tr>
+        <th scope="col">
+            文章照片
+        </th>
+        <th>啟用狀態</th>
+
+    </tr>
+
+    @foreach (var item in Model.RPost_img)
+    {
+        <tr>
+            <td> <img src="~/images/postimg/@item.Post_photo" width="120" /></td>
+            <td>@Html.DisplayFor(modelItem => item.PImg_Enable)</td>
+            <td>
+
+                @Html.ActionLink("鎖定照片", "Reportreallyprocessing4", new { Photo_no = item.Photo_no, RCommand = 5, Report_no = @ViewBag.Report_no }, new { onclick = "alert('已鎖定照片!')", @class = "badge badge-danger" })
+                @Html.ActionLink("解除鎖定", "Reportreallyprocessing4", new { Photo_no = item.Photo_no, RCommand = 6, Report_no = @ViewBag.Report_no }, new { onclick = "alert('已解除鎖定!')", @class = "badge badge-danger" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<hr />
+
+
+<h2 class="alert-info">審定表單</h2>
+
+<div class="table-warning text-center">
+
+
+
+    @foreach (var item in Model.RReportView)
+    {
+
+        <div class="row">
+            <div class="font-weight-bold h6 col-2">
+                @Html.DisplayNameFor(modelitem => item.Report_no)
+            </div>
+            <div class="font-weight-bold h6 col-2">
+                @Html.DisplayNameFor(modelitem => item.Expr2)
+            </div>
+            <div class="font-weight-bold h6 col-1">
+                @Html.DisplayNameFor(modelitem => item.Processing_stsus)
+            </div>
+            <div class="font-weight-bold h6 col-1">
+                @Html.DisplayNameFor(modelitem => item.Unfreeze_date)
+            </div>
+            <div class="font-weight-bold h6 col-1">
+                @Html.DisplayNameFor(modelitem => item.Post_no)
+            </div>
+            <div class="font-weight-bold h6 col-2">
+                @Html.DisplayNameFor(modelitem => item.VType_name)
+            </div>
+            <div class="font-weight-bold h6 col-1">
+                @Html.DisplayNameFor(modelitem => item.Freeze_day)
+            </div>
+            <div id="NoViolation" name="NoViolation" class="col">
+                <a id="NoViolation" name="NoViolation" href="@Url.Action("NoViolation")?Report_no=@item.Report_no" class="btn btn-info">沒有違規</a>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-2" id="reportnumber">
+                @Html.DisplayFor(modelItem => item.Report_no)
+            </div>
+            <div class="col-2">
+                @Html.DisplayFor(modelItem => item.Expr2)
+            </div>
+            <div class="col-1">
+                @Html.DisplayFor(modelItem => item.Processing_stsus)
+            </div>
+            <div class="col-1">
+                @Html.DisplayFor(modelItem => item.Unfreeze_date)
+            </div>
+            <div class="col-1">
+                @Html.DisplayFor(modelItem => item.Post_no)
+            </div>
+            <select id="VType_no" name="VType_no" class="col-2" Value='A'>
+                @foreach (var item2 in Model.RViolation_type)
+                {
+                    <option value="@item2.VType_no" title="@item2.Freeze_day">@item2.VType_name</option>
+                }
+            </select>
+            <div id="Freeze_day" name="Freeze_day" class="col-1">
+                <div>@item.Freeze_day 天</div>
+            </div>
+            <div id="ReturnLockday" name="ReturnLockday" class="col">
+                <a id="ReturnLockday" name="ReturnLockday" href="@Url.Action("Trial")?Post_no=@item.Post_no&Email=@item.Post_Email&Report_no=@item.Report_no&VType_no=@item.VType_no" class="btn btn-danger">執行懲處</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $("[value='@ViewBag.SelectViewBag']").attr("selected", "selected");
+</script>
+<script type="text/javascript">
+
+    $(document).ready(init);
+    var B = $("#ReturnLockday[href]").prop("href");
+
+    function init() {
+        //$("#VType_no").children("option:last").remove();
+        $("#VType_no[Value='A']").change(function () {
+            var D = $("#VType_no[Value]").val();
+            console.log(D);
+            //console.log('辨識1:' + $("#VType_no[name]").val());
+            //console.log('辨識2:' + $("#VType_no").children("[value="+D+"]").prop("title"));
+            var A = $("#VType_no").children("[value=" + D + "]").prop("title");
+            $("#Freeze_day").empty();
+            $("#Freeze_day").append(A + " 天");
+            //console.log($('辨識3:' +"#ReturnLockday[href]").prop("href"));
+            //console.log($('辨識4:' +"#ReturnLockday[href]").prop("href") + "&ReturnLockday_no=" + $("#VType_no[Value]").val());
+            $("#ReturnLockday").removeAttr("href");
+            var C = "&ReturnLockday_no=" + $("#VType_no[Value]").val();
+            $("#ReturnLockday[href]").attr("href", B + C);
+            //console.log('辨識5:' + $("#reportnumber").text());
+        });
+    }
+
+    $("#ReturnLockday").click(function () {
+        alert('檢舉編號:' + $("#reportnumber").text() + '號，已完成審查。');
+    });
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

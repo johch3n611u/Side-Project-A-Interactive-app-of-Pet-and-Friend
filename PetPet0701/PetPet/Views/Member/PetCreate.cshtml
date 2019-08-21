@@ -1,0 +1,99 @@
+﻿@model PetPet.Models.Pet
+
+@{
+    ViewBag.Title = "新增寵物";
+    var semail = "";
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Singin/LoidnIndex");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+    }
+}
+<link href="~/Content/font.css" rel="stylesheet" />
+
+<div class="card bg-light">
+    <h2 class="Myfont">新增寵物</h2>
+
+    <form method="post" action="@Url.Action("PetCreate")" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2 tf">寵物類別</label>
+                <div class="col-md-10">
+                    @*<input class="form-control" value="1">*@
+                    <select id="PetType_name" name="PetType_name" class="form-control-sm txtbox">
+                        @{
+                            foreach (var petType in ViewBag.pType)
+                            {
+                                <option value="@petType.PetType_no">@petType.PetType_name</option>
+                            }
+                        }
+
+                    </select>
+                    @Ajax.ActionLink("查詢", "_PetVariety", "Member", new { @PetTno=1 },
+                            new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "PetVnoAjax" }
+                            ,new { @class= "btn btn-danger text-light", style = "font-size:0.1em;", id="select01",})
+                    @Html.ValidationMessageFor(model => model.PetVariety_no, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="PetVnoAjax">
+                @Html.Action("_PetVariety", "Member")
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pet_name, htmlAttributes: new { @class = "control-label col-md-2 tf" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Pet_name, new { htmlAttributes = new { @class = "form-control txtbox" } })
+                    @Html.ValidationMessageFor(model => model.Pet_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pet_gender, htmlAttributes: new { @class = "control-label col-md-2 tf" })
+                <div class="col-md-10">
+                    <select id="Pet_gender" name="Pet_gender" class="form-control txtbox">
+                        <option value="True">帥哥</option>
+                        <option value="False">美女</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Pet_gender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pet_photo, htmlAttributes: new { @class = "control-label col-md-2 tf" })
+                <div class="col-md-10">
+                    <input id="Pet_photo" name="Pet_photo" type="file" class="form-control p-1 txtbox" required />
+                    @*@Html.EditorFor(model => model.Pet_photo, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.Pet_photo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @ViewBag.Error
+                    <input type="submit" value="新增" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </form>
+    <div>
+        @Html.ActionLink("回到我的寵物", "MyPet",new { area=""},new { @class= "btn btn-link" })
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $('#PetType_name').change(function () {
+        var aa = $('#PetType_name').select().val();
+        var url = '_PetVariety?PetTno=' + aa;
+        $('#select01').attr('href', url);
+    });
+</script>

@@ -1,0 +1,84 @@
+﻿@model PetPet.Models.News
+
+@{
+    ViewBag.Title = "最新消息詳細資料";
+    Layout = "~/Views/Shared/_LayoutFunction.cshtml";
+}
+
+<h2 class="alert-info">最新消息詳細資料</h2>
+
+<div>
+    @*<h4>News</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.N_tital)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.N_tital)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.N_content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.N_content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.N_photo)
+
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.N_photo)*@
+            @{
+                string y = "/NewsImages/" + Model.N_photo.ToString();
+                string strclass = "";
+                string stralt = "";
+                if (Model.N_photo == "")
+                {
+                    y = "";
+                    strclass = "d-none";
+                    stralt = "沒有上傳圖片";
+                }
+                <img src="@y" class='@strclass' width="500" />
+                <lable>@stralt</lable>
+            }
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.N_post_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.N_post_time)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.N_post_deadline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.N_post_deadline)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Admin.Admin_account)*@
+            管理者
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin.Admin_account)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("修改", "Edit", new { id = Model.News_no }) |
+    @Html.ActionLink("返回最新消息清單", "Index")
+</p>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>

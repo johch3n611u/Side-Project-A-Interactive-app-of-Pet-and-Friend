@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PetPet.Models.Pet>
+
+@{
+    ViewBag.Title = "MyPet";
+}
+
+<link href="~/Content/font.css" rel="stylesheet" />
+<div class="row">
+    <div class="container NEWrounded-top" style=" background-color:white">
+
+        <h2 class="Myfont mt-3">我的寵物</h2>
+        @Html.ActionLink("加入新寵物", "PetCreate", "Member", new { area = "" }, new { @class = "btn btn-primary" })
+        <div class="row">
+            @foreach (var item in Model.Reverse())
+            {
+                string imgsrc = (@Html.DisplayFor(modelItem => item.Pet_photo)).ToString();
+                <div class="col-md-4 col-sm-6 p-3">
+                    <div class="card bg-light">
+                        <div class="card-header">
+                            <a>@item.Pet_name</a>
+                        </div>
+                        <div class="card-body text-center">
+                            @*<a href="@Url.Action("DetailPost","Post", new { @name = item.Pet_no })">*@
+                            <img src="~/images/petimg/@imgsrc" style="width:95%;" class="img-thumbnail" />
+                            @*</a>*@
+                            @{
+                                var petgender = "";
+                                if (item.Pet_gender == true)
+                                {
+                                    petgender = "小王子";
+                                }
+                                else
+                                {
+                                    petgender = "小公主";
+                                }
+                            }
+                            <h5>@petgender</h5>
+                            <p>@item.PetVariety.Variety_name</p>
+                        </div>
+                        <div class="card-footer">
+                            @Html.ActionLink("修改", "PetEdit", new { id = item.Pet_no }) |
+                            @Html.ActionLink("刪除", "PetDelete", new { id = item.Pet_no }, new { onclick = "return confirm('刪除就再也看不到囉!!您確定嗎??')" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

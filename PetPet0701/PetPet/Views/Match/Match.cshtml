@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PetPet.Models.Member>
+@{
+    ViewBag.Title = "Match";
+    var semail = "";
+    if (Session["semail"] == null || string.IsNullOrWhiteSpace(Session["semail"].ToString()))
+    {
+        Response.Redirect("~/Login/Login");
+    }
+    else
+    {
+        semail = Session["semail"].ToString();
+    }
+}
+
+<div class="row pt-5 col-sm-12 m-auto">
+        @foreach (var item in Model.Reverse())
+        {
+            string imgsrc = (@Html.DisplayFor(modelItem => item.Mem_photo)).ToString();
+            var gender = "男";
+            if (item.Gender != true)
+            {
+                gender = "女";
+            }
+    <div class="col-12">
+        
+        <div class="card" style="background-color:white;border-radius: 2rem;box-shadow: 20px 20px 50px rgba(138, 37, 12, 0.49)">
+
+            <div class="card-body text-center">
+                <div class="container">
+                    <h2 class="Myfont" style="font-weight:bold ;letter-spacing: 3px">配對結果</h2>
+                </div>
+                <lable>@item.Name</lable>
+                <lable>@item.City_list.City_name</lable>
+                <lable>@gender</lable>
+                <br />
+                <div style=" -webkit-border-radius: 30px;">
+                    <img src="~/images/memberimg/@imgsrc" style="width:90%; " class="p-1 " />
+                </div>
+                <form method="post" action="@Url.Action("AddFriend","Friend")" enctype="multipart/form-data">
+                    <input id="FriendEmail" name="FriendEmail" value="@item.Email" class="d-none" />
+                    <input type="submit" value="加好友" class="btn btn-primary p-1" />
+                    @Html.ActionLink("放棄", "MatchIndex", "Match", new { area = "" }, new { @class = "btn btn-primary p-1" })
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+        }
+    </div>
+
+
