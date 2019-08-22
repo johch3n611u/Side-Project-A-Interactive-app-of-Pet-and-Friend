@@ -12,8 +12,8 @@
   1. [API串接後端驗證圖形](#)
   
 
-  - [每日#詳細學習過程請參考:Gitbook南訓日誌](https://app.gitbook.com/@johch3n611u/s/c50108/)
-  - [結訓#專案實作請參考:PetPet寵物交友平台](https://app.gitbook.com/@johch3n611u/s/c50108/)
+  - [每日#詳細學習過程請參考:Gitbook南訓日誌](https://github.com/johch3n611u/PetPet-.NET_MVC/blob/master/img/%E6%9C%AA%E5%91%BD%E5%90%8Dsss-1sss-03.png)
+  - [結訓#專案實作請參考:PetPet寵物交友平台](https://github.com/johch3n611u/PetPet-.NET_MVC/blob/master/img/%E6%9C%AA%E5%91%BD%E5%90%8Dsss-1-04.png)
 
 > **內容**:MVC 1-4、SignalR、front_end RWD html5 jQ 1-41、back_end webform 1-43
 
