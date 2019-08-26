@@ -3,7 +3,7 @@
 > **目錄**:1.功能與畫面 2.使用技術 3.專題報告書
 
 > **行動商務系統設計與開發課程 900小時職前班 專題實作**
- - [詳細學習內容請參考](https://github.com/johch3n611u/Little-donkey)
+ - [詳細學習內容請點擊 -> (Little-donkey)](https://github.com/johch3n611u/Little-donkey)
 
 ## 功能與畫面
 
