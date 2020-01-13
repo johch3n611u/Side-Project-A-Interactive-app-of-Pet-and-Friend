@@ -1,4 +1,4 @@
-*.rb linguist-language=Java
-*.js linguist-language=Scala
-*.css linguist-language=Scala
-*.html linguist-language=Scala
+*.rb linguist-language=c#
+*.js linguist-language=c#
+*.css linguist-language=c#
+*.html linguist-language=c#
