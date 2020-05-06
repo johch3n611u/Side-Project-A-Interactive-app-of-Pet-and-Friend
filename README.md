@@ -5,6 +5,10 @@
 > **行動商務系統設計與開發課程 900小時職前班 專題實作**
  - [詳細學習內容請點擊 -> (Little-donkey)](https://github.com/johch3n611u/Little-donkey)
 
+## 序
+
+專案除了編程外包含從產業評估、客戶需求訪談、可行性研究報告、軟體發展規劃、軟體需求規格、UML塑模分析、軟體設計規格、資料庫正規化、軟體測試計畫、系統安裝手冊、使用者操作手冊等一系列內容。
+
 ## 功能與畫面
 
 ![image](https://github.com/johch3n611u/PetPet-.NET_MVC/blob/master/img/%E6%9C%AA%E5%91%BD%E5%90%8Dsss-1sss-03.png)
